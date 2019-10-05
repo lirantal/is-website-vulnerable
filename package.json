@@ -1,0 +1,210 @@
+{
+  "name": "is-website-vulnerable",
+  "version": "0.0.0-development",
+  "description": "finds publicly known security vulnerabilities in a website's frontend JavaScript libraries",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "lint": "eslint . && npm run lint:lockfile",
+    "lint:lockfile": "lockfile-lint --path package-lock.json --type npm --validate-https --allowed-hosts npm yarn",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --config .prettierrc.js --write '**/*.js'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "coverage:view": "open-cli coverage/lcov-report/index.html",
+    "semantic-release": "semantic-release"
+  },
+  "author": {
+    "name": "Liran Tal",
+    "email": "liran.tal@gmail.com",
+    "url": "https://github.com/lirantal"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "security",
+    "vulnerabilities",
+    "website",
+    "scan"
+  ],
+  "homepage": "https://github.com/lirantal/is-website-vulnerable",
+  "bugs": {
+    "url": "https://github.com/lirantal/is-website-vulnerable/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lirantal/is-website-vulnerable.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/commit-analyzer": "^6.2.0",
+    "@semantic-release/git": "^7.0.16",
+    "@semantic-release/github": "^5.4.2",
+    "@semantic-release/npm": "^5.1.13",
+    "@semantic-release/release-notes-generator": "^7.2.1",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cz-conventional-changelog": "^1.2.0",
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^22.7.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^3.0.0",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.2.0",
+    "lockfile-lint": "^2.0.1",
+    "open-cli": "^5.0.0",
+    "prettier": "^1.18.2",
+    "semantic-release": "^15.13.19"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "notify": true,
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "testPathIgnorePatterns": [
+      "/__tests__/.*/__fixtures__/.*"
+    ],
+    "collectCoverageFrom": [
+      "index.js",
+      "src/**/*.{js,ts}"
+    ],
+    "testMatch": [
+      "**/*.test.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint --env HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "post-merge": "npm install",
+      "pre-push": "npm run lint && npm run test"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ],
+    "parser": "babel-eslint",
+    "ignore": [
+      "**/out/"
+    ]
+  },
+  "eslintIgnore": [
+    "coverage/**"
+  ],
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "plugins": [
+      "import",
+      "standard",
+      "node",
+      "security",
+      "jest"
+    ],
+    "extends": [
+      "standard",
+      "plugin:node/recommended"
+    ],
+    "rules": {
+      "no-process-exit": "warn",
+      "jest/no-disabled-tests": "error",
+      "jest/no-focused-tests": "error",
+      "jest/no-identical-title": "error",
+      "node/no-unsupported-features": "off",
+      "node/no-unpublished-require": "off",
+      "security/detect-non-literal-fs-filename": "error",
+      "security/detect-unsafe-regex": "error",
+      "security/detect-buffer-noassert": "error",
+      "security/detect-child-process": "error",
+      "security/detect-disable-mustache-escape": "error",
+      "security/detect-eval-with-expression": "error",
+      "security/detect-no-csrf-before-method-override": "error",
+      "security/detect-non-literal-regexp": "error",
+      "security/detect-object-injection": "warn",
+      "security/detect-possible-timing-attacks": "error",
+      "security/detect-pseudoRandomBytes": "error",
+      "space-before-function-paren": "off",
+      "object-curly-spacing": "off"
+    },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "ecmaFeatures": {
+        "impliedStrict": true
+      }
+    }
+  },
+  "release": {
+    "branch": "master",
+    "analyzeCommits": {
+      "preset": "angular",
+      "releaseRules": [
+        {
+          "type": "docs",
+          "release": "patch"
+        },
+        {
+          "type": "refactor",
+          "release": "patch"
+        },
+        {
+          "type": "style",
+          "release": "patch"
+        }
+      ]
+    }
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    "@semantic-release/npm",
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md"
+        ]
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}
