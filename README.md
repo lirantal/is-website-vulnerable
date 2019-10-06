@@ -16,6 +16,11 @@
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
 </p>
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/316371/66269065-a8e13200-e84c-11e9-9c42-22f8a428a341.png" alt="Screenshot of npm module called is website vulnerable that detects security vulnerabilities in websites based on Snyk database" />
+
+</p>
+
 # About
 
 finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
