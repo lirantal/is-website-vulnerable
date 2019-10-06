@@ -19,7 +19,7 @@ const audit = new Audit()
 audit
   .scanUrl(url)
   .then(results => {
-    const renderer = new RenderConsole(results)
+    const renderer = new RenderConsole(results,process.argv[3])
     renderer.print()
   })
   .catch(error => {

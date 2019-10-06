@@ -5,8 +5,11 @@
 const chalk = require('chalk')
 
 module.exports = class RenderConsole {
-  constructor(scanResults) {
+  constructor(scanResults, outputType) {
     this.data = scanResults
+    this.outputType = outputType
+    this.noWarnings =
+      'No JavaScript libraries detected with publicly known security vulnerabilities'
   }
 
   print() {
@@ -15,40 +18,69 @@ module.exports = class RenderConsole {
   }
 
   format() {
-    let output = ''
-
-    output += `
-  `
-    output += `Website: ${this.data.lhr.finalUrl}`
-
     const vulnerabilitiesResults = this.data.lhr.audits['no-vulnerable-libraries']
     let vulnerabilitiesCount = 0
 
-    if (
-      vulnerabilitiesResults.details &&
-      vulnerabilitiesResults.details.items &&
-      vulnerabilitiesResults.details.items.length > 0
-    ) {
-      vulnerabilitiesResults.details.items.forEach(vulnItem => {
-        vulnerabilitiesCount += vulnItem.vulnCount
-        const vulnInfo = this.formatVulnerability(vulnItem)
-        output += vulnInfo
-      })
-    } else {
-      output += `
+    switch (this.outputType) {
+      case '--json': {
+        var result = []
+        if (
+          vulnerabilitiesResults.details &&
+          vulnerabilitiesResults.details.items &&
+          vulnerabilitiesResults.details.items.length > 0
+        ) {
+          vulnerabilitiesResults.details.items.forEach(vulnItem => {
+            vulnerabilitiesCount += vulnItem.vulnCount
+            const vulnInfo = this.formatVulnerability(vulnItem)
+            result.push(vulnInfo)
+          })
+        } else {
+          result = this.noWarnings
+        }
 
-  ○ No JavaScript libraries detected with publicly known security vulnerabilities`
+        return JSON.stringify(
+          {
+            website: this.data.lhr.finalUrl,
+            executionTime: this.data.lhr.timing.total + ' ms',
+            totalVulnerabilities: vulnerabilitiesCount,
+            result
+          },
+          null,
+          2
+        )
+      }
+      default: {
+        let output = ''
+        output += `
+`
+        output += `Website: ${this.data.lhr.finalUrl}`
+
+        if (
+          vulnerabilitiesResults.details &&
+          vulnerabilitiesResults.details.items &&
+          vulnerabilitiesResults.details.items.length > 0
+        ) {
+          vulnerabilitiesResults.details.items.forEach(vulnItem => {
+            vulnerabilitiesCount += vulnItem.vulnCount
+            const vulnInfo = this.formatVulnerability(vulnItem)
+            output += vulnInfo
+          })
+        } else {
+          output += `
+          ○ ${this.noWarnings}`
+        }
+
+        output += `
+
+[${chalk.bold.white(vulnerabilitiesCount)}] Total vulnerabilities
+[${this.data.lhr.timing.total}ms] execution time
+        
+vulnerabilities powered by Snyk.io (https://snyk.io/vuln?type=npm)
+        `
+
+        return output
+      }
     }
-
-    output += `
-  
-  [${chalk.bold.white(vulnerabilitiesCount)}] Total vulnerabilities
-  [${this.data.lhr.timing.total}ms] execution time
-
-  vulnerabilities powered by Snyk.io (https://snyk.io/vuln?type=npm)
-    `
-
-    return output
   }
 
   formatVulnerability(vulnItem) {
@@ -56,13 +88,26 @@ module.exports = class RenderConsole {
       return ''
     }
 
-    return `
-  
-    ⎡ ${chalk.red('✖')} ${vulnItem.detectedLib.text}
-    ⎜ ${this.formatSeverityChart(vulnItem.highestSeverity)} ${chalk
-      .bgHex(this.formatSeverityColor(vulnItem.highestSeverity))
-      .bold(` ${vulnItem.vulnCount} `)} vulnerabilities
-    ⎣ ${chalk.hex('#4b45a1')('▶')}︎ ${vulnItem.detectedLib.url}`
+    var output
+    switch (this.outputType) {
+      case '--json':
+        output = {
+          library: vulnItem.detectedLib.text,
+          severity: vulnItem.highestSeverity,
+          vulnerabilitiesCount: vulnItem.vulnCount,
+          url: vulnItem.detectedLib.url
+        }
+        break
+
+      default:
+        output = `  
+⎡ ${chalk.red('✖')} ${vulnItem.detectedLib.text}
+⎜ ${this.formatSeverityChart(vulnItem.highestSeverity)} ${chalk
+            .bgHex(this.formatSeverityColor(vulnItem.highestSeverity))
+            .bold(` ${vulnItem.vulnCount} `)} vulnerabilities
+⎣ ${chalk.hex('#4b45a1')('▶')}︎ ${vulnItem.detectedLib.url}`
+    }
+    return output
   }
 
   formatSeverityColor(severity) {
