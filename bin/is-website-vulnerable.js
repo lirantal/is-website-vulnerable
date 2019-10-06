@@ -3,11 +3,16 @@
 'use strict'
 
 const { Audit, RenderConsole } = require('../index')
+const url = require('url')
 
-const url = process.argv[2]
-const regExp = RegExp(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g)
+let urlToScan = process.argv[2]
 
-if (!regExp.test(url)) {
+// eslint-disable-next-line node/no-deprecated-api
+if (url.parse(urlToScan).protocol === null) {
+  urlToScan = 'http://' + urlToScan
+}
+
+if (!urlToScan) {
   console.error('')
   console.error('error: please provide a URL of a website to scan')
   console.error('')
@@ -19,7 +24,7 @@ if (!regExp.test(url)) {
 
 const audit = new Audit()
 audit
-  .scanUrl(url)
+  .scanUrl(urlToScan)
   .then(results => {
     const renderer = new RenderConsole(results)
     renderer.print()
