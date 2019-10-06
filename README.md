@@ -23,7 +23,7 @@
 
 # About
 
-finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
+Finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
 
 # Install
 
@@ -45,7 +45,7 @@ npx is-website-vulnerable https://example.com
 
 # Contributing
 
-Please consult [CONTIRBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.
+Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.
 
 # Author
 
