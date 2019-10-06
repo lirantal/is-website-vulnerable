@@ -3,8 +3,11 @@
   "version": "0.0.0-development",
   "description": "finds publicly known security vulnerabilities in a website's frontend JavaScript libraries",
   "main": "index.js",
+  "bin": {
+    "is-website-vulnerable": "./bin/is-website-vulnerable.js"
+  },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "scripts": {
     "lint": "eslint . && npm run lint:lockfile",
@@ -100,7 +103,7 @@
     "hooks": {
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
-      "post-merge": "npm install",
+      "post-merge": "yarn install",
       "pre-push": "npm run lint && npm run test"
     }
   },
