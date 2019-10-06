@@ -22,22 +22,21 @@ finds publicly known security vulnerabilities in a website's frontend JavaScript
 
 # Install
 
-Using `npx` to run a one-off scan of a website:
+You can install globally via:
 
 ```bash
-npx is-website-vulnerable example.com
+npm install -g is-website-vulnerable
 ```
+
+or scan as a one-off call with npx.
 
 # Usage
 
-```js
-// @TODO
-const {} = require('is-website-vulnerable')
+Using `npx` to run a one-off scan of a website:
+
+```bash
+npx is-website-vulnerable https://example.com
 ```
-
-# Example
-
-<!-- TODO -->
 
 # Contributing
 

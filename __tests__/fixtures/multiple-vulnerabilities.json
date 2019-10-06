@@ -1,0 +1,86 @@
+{
+  "lhr": {
+    "finalUrl": "https://www.example.com",
+    "audits": {
+      "js-libraries": {
+        "id": "js-libraries",
+        "title": "Detected JavaScript libraries",
+        "description": "All front-end JavaScript libraries detected on the page. [Learn more](https://web.dev/js-libraries).",
+        "score": 1,
+        "scoreDisplayMode": "binary",
+        "numericValue": null,
+        "displayValue": null,
+        "explanation": null,
+        "errorMessage": null,
+        "warnings": null,
+        "details": {
+          "type": "table",
+          "headings": [
+            { "key": "name", "itemType": "text", "text": "Name" },
+            { "key": "version", "itemType": "text", "text": "Version" }
+          ],
+          "items": [
+            { "name": "jQuery", "version": "2.1.4", "npm": "jquery" },
+            { "name": "jQuery UI", "version": "1.11.4", "npm": "jquery-ui" },
+            { "name": "Leaflet", "version": "0.7.3", "npm": "leaflet" },
+            { "name": "AngularJS", "version": "1.2.32", "npm": "angular" }
+          ],
+          "summary": {}
+        }
+      },
+      "no-vulnerable-libraries": {
+        "id": "no-vulnerable-libraries",
+        "title": "Includes front-end JavaScript libraries with known security vulnerabilities",
+        "description": "Some third-party scripts may contain known security vulnerabilities that are easily identified and exploited by attackers. [Learn more](https://web.dev/no-vulnerable-libraries).",
+        "score": 0,
+        "scoreDisplayMode": "binary",
+        "numericValue": null,
+        "displayValue": "14 vulnerabilities detected",
+        "explanation": null,
+        "errorMessage": null,
+        "warnings": null,
+        "details": {
+          "type": "table",
+          "headings": [
+            { "key": "detectedLib", "itemType": "link", "text": "Library Version" },
+            { "key": "vulnCount", "itemType": "text", "text": "Vulnerability Count" },
+            { "key": "highestSeverity", "itemType": "text", "text": "Highest Severity" }
+          ],
+          "items": [
+            {
+              "highestSeverity": "Medium",
+              "vulnCount": 2,
+              "detectedLib": {
+                "text": "jQuery@2.1.4",
+                "url": "https://snyk.io/vuln/npm:jquery?lh=2.1.4&utm_source=lighthouse&utm_medium=ref&utm_campaign=audit",
+                "type": "link"
+              }
+            },
+            {
+              "highestSeverity": "High",
+              "vulnCount": 1,
+              "detectedLib": {
+                "text": "jQuery UI@1.11.4",
+                "url": "https://snyk.io/vuln/npm:jquery-ui?lh=1.11.4&utm_source=lighthouse&utm_medium=ref&utm_campaign=audit",
+                "type": "link"
+              }
+            },
+            {
+              "highestSeverity": "High",
+              "vulnCount": 11,
+              "detectedLib": {
+                "text": "AngularJS@1.2.32",
+                "url": "https://snyk.io/vuln/npm:angular?lh=1.2.32&utm_source=lighthouse&utm_medium=ref&utm_campaign=audit",
+                "type": "link"
+              }
+            }
+          ],
+          "summary": {}
+        }
+      }
+    },
+    "timing": {
+      "total": "23423"
+    }
+  }
+}

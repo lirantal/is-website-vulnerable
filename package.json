@@ -26,7 +26,9 @@
     "security",
     "vulnerabilities",
     "website",
-    "scan"
+    "scan",
+    "lighthouse",
+    "audit"
   ],
   "homepage": "https://github.com/lirantal/is-website-vulnerable",
   "bugs": {
@@ -36,7 +38,10 @@
     "type": "git",
     "url": "https://github.com/lirantal/is-website-vulnerable.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "lighthouse": "^5.5.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",
     "@commitlint/config-conventional": "^7.1.2",
