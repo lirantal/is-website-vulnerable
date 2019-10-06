@@ -1,4 +1,5 @@
 jest.mock('lighthouse')
+jest.mock('@slimio/async-cli-spinner')
 jest.mock('chrome-launcher', () => {
   return {
     launch() {
