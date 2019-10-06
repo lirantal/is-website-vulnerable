@@ -103,8 +103,8 @@ vulnerabilities powered by Snyk.io (https://snyk.io/vuln?type=npm)
         output = `  
 ⎡ ${chalk.red('✖')} ${vulnItem.detectedLib.text}
 ⎜ ${this.formatSeverityChart(vulnItem.highestSeverity)} ${chalk
-            .bgHex(this.formatSeverityColor(vulnItem.highestSeverity))
-            .bold(` ${vulnItem.vulnCount} `)} vulnerabilities
+          .bgHex(this.formatSeverityColor(vulnItem.highestSeverity))
+          .bold(` ${vulnItem.vulnCount} `)} vulnerabilities
 ⎣ ${chalk.hex('#4b45a1')('▶')}︎ ${vulnItem.detectedLib.url}`
     }
     return output
