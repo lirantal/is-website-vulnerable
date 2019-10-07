@@ -2,10 +2,12 @@
 /* eslint-disable no-process-exit */
 'use strict'
 
+const debug = require('debug')('is-website-vulnerable')
 const { Audit, RenderConsole } = require('../index')
 const url = require('url')
 
 let urlToScan = process.argv[2]
+debug(`received url argument: ${urlToScan}`)
 
 // eslint-disable-next-line node/no-deprecated-api
 if (url.parse(urlToScan).protocol === null) {
