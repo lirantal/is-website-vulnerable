@@ -1,6 +1,7 @@
 /* eslint-disable node/no-extraneous-require */
 'use strict'
 
+const debug = require('debug')('is-website-vulnerable')
 const lighthouse = require('lighthouse')
 const chromeLauncher = require('chrome-launcher')
 
@@ -19,6 +20,7 @@ module.exports = class Audit {
     const opts = {}
     opts.port = chromeInstance.port
 
+    debug(`invoking lighthouse scan for: ${url}`)
     const scanResult = await lighthouse(url, opts, {
       extends: 'lighthouse:default',
       settings: this.settings

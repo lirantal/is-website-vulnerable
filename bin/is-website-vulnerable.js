@@ -2,9 +2,11 @@
 /* eslint-disable no-process-exit */
 'use strict'
 
+const debug = require('debug')('is-website-vulnerable')
 const { Audit, RenderConsole } = require('../index')
 
 const url = process.argv[2]
+debug(`received url argument: ${url}`)
 if (!url) {
   console.error('')
   console.error('error: please provide a URL of a website to scan')
