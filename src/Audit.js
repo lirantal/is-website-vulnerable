@@ -2,6 +2,15 @@
 'use strict'
 
 const debug = require('debug')('is-website-vulnerable')
+
+const nodeVersion = process.versions['node']
+const nodeVersionMajor = nodeVersion.split('.')[0]
+debug(`detected Node.js version: ${nodeVersionMajor}`)
+if (nodeVersionMajor < 10) {
+  debug('setting global URL variable')
+  global.URL = require('url').URL
+}
+
 const lighthouse = require('lighthouse')
 const chromeLauncher = require('chrome-launcher')
 
