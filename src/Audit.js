@@ -13,7 +13,7 @@ module.exports = class Audit {
 
   async scanUrl(url) {
     const chromeInstance = await chromeLauncher.launch({
-      chromeFlags: ['--headless']
+      chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
     })
 
     const opts = {}
