@@ -114,7 +114,7 @@ vulnerabilities powered by Snyk.io (https://snyk.io/vuln?type=npm)
     const colorSeverityMap = {
       Low: '#595775',
       Medium: '#df8620',
-      High: '##b31a6b'
+      High: '#b31a6b'
     }
 
     return colorSeverityMap[severity] || colorSeverityMap['Low']
