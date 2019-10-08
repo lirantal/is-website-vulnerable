@@ -85,16 +85,4 @@ describe('RenderConsole', () => {
       expect(vulnInfo.match(/0.* Total vulnerabilities/)).toBeTruthy()
     })
   })
-
-  describe('Vulnerability JSON renderer', () => {
-    test('Printed JSON should have relevant data points', () => {
-      const results = require('./fixtures/multiple-vulnerabilities.json')
-      const renderer = new RenderConsole(results, '--json')
-
-      const vulnInfo = renderer.format()
-      // expect(vulnInfo).toEqual('')
-      expect(vulnInfo.match(/"totalVulnerabilities": 14/)).toBeTruthy()
-      expect(vulnInfo.match(/"executionTime": "23423 ms"/)).toBeTruthy()
-    })
-  })
 })
