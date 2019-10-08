@@ -17,13 +17,27 @@
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/316371/66269065-a8e13200-e84c-11e9-9c42-22f8a428a341.png" alt="Screenshot of npm module called is website vulnerable that detects security vulnerabilities in websites based on Snyk database" />
+  <img src="./.github/is-website-vulnerable-logo.png" alt="Screenshot of npm module called is website vulnerable that detects security vulnerabilities in websites based on Snyk database" />
+  
+  <p align="center">
+  	<p align="center">Many thanks to <a href="https://snyk.io"><img src="./.github/snyk-logo.png" width="100"></a> for supporting open source security</p>
+    
+</p>
+
 
 </p>
 
 # About
 
-finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
+Finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
+
+# Usage
+
+Using Node.js's `npx` to run a one-off scan of a website:
+
+```bash
+npx is-website-vulnerable https://example.com
+```
 
 # Install
 
@@ -33,19 +47,9 @@ You can install globally via:
 npm install -g is-website-vulnerable
 ```
 
-or scan as a one-off call with npx.
-
-# Usage
-
-Using `npx` to run a one-off scan of a website:
-
-```bash
-npx is-website-vulnerable https://example.com
-```
-
 # Contributing
 
-Please consult [CONTIRBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.
+Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.
 
 # Author
 

@@ -2,10 +2,12 @@
 /* eslint-disable no-process-exit */
 'use strict'
 
+const debug = require('debug')('is-website-vulnerable')
 const { Audit, RenderConsole } = require('../index')
 const Utils = require('../src/Utils')
 
 let url = process.argv[2]
+debug(`received url argument: ${url}`)
 
 url = Utils.parseUrl(url)
 
