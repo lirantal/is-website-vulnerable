@@ -3,16 +3,13 @@
 'use strict'
 
 const { Audit, RenderConsole } = require('../index')
-const url = require('url')
+const Utils = require('../src/Utils')
 
-let urlToScan = process.argv[2]
+let url = process.argv[2]
 
-// eslint-disable-next-line node/no-deprecated-api
-if (url.parse(urlToScan).protocol === null) {
-  urlToScan = 'http://' + urlToScan
-}
+url = Utils.parseUrl(url)
 
-if (!urlToScan) {
+if (!url) {
   console.error('')
   console.error('error: please provide a URL of a website to scan')
   console.error('')
@@ -24,7 +21,7 @@ if (!urlToScan) {
 
 const audit = new Audit()
 audit
-  .scanUrl(urlToScan)
+  .scanUrl(url)
   .then(results => {
     const renderer = new RenderConsole(results)
     renderer.print()
