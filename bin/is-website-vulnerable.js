@@ -3,10 +3,13 @@
 'use strict'
 
 const debug = require('debug')('is-website-vulnerable')
-const { Audit, RenderConsole } = require('../index')
+const { Audit, RenderConsole, Utils } = require('../index')
 
-const url = process.argv[2]
+let url = process.argv[2]
 debug(`received url argument: ${url}`)
+
+url = Utils.parseUrl(url)
+
 if (!url) {
   console.error('')
   console.error('error: please provide a URL of a website to scan')
