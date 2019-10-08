@@ -2,8 +2,6 @@
 /* eslint-disable indent */
 'use strict'
 
-const chalk = require('chalk')
-
 module.exports = class RenderConsole {
   constructor(scanResults) {
     this.data = scanResults
