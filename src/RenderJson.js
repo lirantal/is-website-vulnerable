@@ -2,7 +2,7 @@
 /* eslint-disable indent */
 'use strict'
 
-module.exports = class RenderConsole {
+module.exports = class RenderJson {
   constructor(scanResults) {
     this.data = scanResults
     this.noWarnings =
