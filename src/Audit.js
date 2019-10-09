@@ -1,6 +1,16 @@
 /* eslint-disable node/no-extraneous-require */
 'use strict'
 
+const debug = require('debug')('is-website-vulnerable')
+
+const nodeVersion = process.versions['node']
+const nodeVersionMajor = nodeVersion.split('.')[0]
+debug(`detected Node.js version: ${nodeVersionMajor}`)
+if (nodeVersionMajor < 10) {
+  debug('setting global URL variable')
+  global.URL = require('url').URL
+}
+
 const lighthouse = require('lighthouse')
 const chromeLauncher = require('chrome-launcher')
 const Spinner = require('@slimio/async-cli-spinner')
@@ -30,7 +40,7 @@ module.exports = class Audit {
     // Start chrome-launcher Spinner
     spinner1.start()
     const chromeInstance = await chromeLauncher.launch({
-      chromeFlags: ['--headless']
+      chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
     })
 
     // Stop chrome-launcher Spinner
@@ -44,6 +54,7 @@ module.exports = class Audit {
     const opts = {}
     opts.port = chromeInstance.port
 
+    debug(`invoking lighthouse scan for: ${url}`)
     const scanResult = await lighthouse(url, opts, {
       extends: 'lighthouse:default',
       settings: this.settings

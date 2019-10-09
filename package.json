@@ -44,6 +44,7 @@
   "dependencies": {
     "@slimio/async-cli-spinner": "^0.5.1",
     "chalk": "^2.4.2",
+    "debug": "^4.1.1",
     "lighthouse": "^5.5.0"
   },
   "devDependencies": {
