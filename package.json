@@ -42,10 +42,10 @@
     "url": "https://github.com/lirantal/is-website-vulnerable.git"
   },
   "dependencies": {
-    "@slimio/async-cli-spinner": "^0.5.1",
     "chalk": "^2.4.2",
     "debug": "^4.1.1",
-    "lighthouse": "^5.5.0"
+    "lighthouse": "^5.5.0",
+    "ora": "^4.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",

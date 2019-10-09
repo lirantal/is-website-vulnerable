@@ -13,17 +13,17 @@ if (nodeVersionMajor < 10) {
 
 const lighthouse = require('lighthouse')
 const chromeLauncher = require('chrome-launcher')
-const Spinner = require('@slimio/async-cli-spinner')
+const Ora = require('ora')
 const chalk = require('chalk')
 
 // chrome-launcher Spinner
-const spinner1 = new Spinner({
+const spinner1 = new Ora({
   text: chalk.cyan('Setting up a chrome instance'),
   color: 'red',
   spinner: 'bouncingBar'
 })
 // lighthouse Spinner
-const spinner2 = new Spinner({
+const spinner2 = new Ora({
   text: chalk.cyan('Auditing...'),
   color: 'red',
   spinner: 'bouncingBar'
@@ -39,18 +39,19 @@ module.exports = class Audit {
   async scanUrl(url) {
     // Start chrome-launcher Spinner
     spinner1.start()
+    let time = new Date()
     const chromeInstance = await chromeLauncher.launch({
       chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
     })
 
     // Stop chrome-launcher Spinner
     spinner1.succeed(
-      `${chalk.green(`Set up completed in ${(spinner1.elapsedTime / 1000).toFixed(2)} seconds!`)}`
+      `${chalk.green(`Set up completed in ${((new Date() - time) / 1000).toFixed(2)} seconds!`)}`
     )
 
     // Start lighthouse Spinner
     spinner2.start()
-
+    time = new Date()
     const opts = {}
     opts.port = chromeInstance.port
 
@@ -62,7 +63,7 @@ module.exports = class Audit {
 
     // Stop lighthouse Spinner
     spinner2.succeed(
-      `${chalk.green(`Auditing completed in ${(spinner2.elapsedTime / 1000).toFixed(2)} seconds!`)}`
+      `${chalk.green(`Auditing completed in ${((new Date() - time) / 1000).toFixed(2)} seconds!`)}`
     )
 
     await chromeInstance.kill()
