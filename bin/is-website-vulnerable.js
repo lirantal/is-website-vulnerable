@@ -3,7 +3,8 @@
 'use strict'
 
 const debug = require('debug')('is-website-vulnerable')
-const { Audit, RenderConsole, Utils } = require('../index')
+const argv = require('yargs').argv
+const { Audit, RenderConsole, RenderJson, Utils } = require('../index')
 
 let url = process.argv[2]
 debug(`received url argument: ${url}`)
@@ -24,7 +25,12 @@ const audit = new Audit()
 audit
   .scanUrl(url)
   .then(results => {
-    const renderer = new RenderConsole(results)
+    var renderer
+    if (argv.json) {
+      renderer = new RenderJson(results)
+    } else {
+      renderer = new RenderConsole(results)
+    }
     renderer.print()
   })
   .catch(error => {

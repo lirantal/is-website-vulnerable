@@ -36,7 +36,6 @@ module.exports = class RenderConsole {
       })
     } else {
       output += `
-
   ○ No JavaScript libraries detected with publicly known security vulnerabilities`
     }
 
@@ -44,7 +43,6 @@ module.exports = class RenderConsole {
   
   [${chalk.bold.white(vulnerabilitiesCount)}] Total vulnerabilities
   [${this.data.lhr.timing.total}ms] execution time
-
   vulnerabilities powered by Snyk.io (https://snyk.io/vuln?type=npm)
     `
 
