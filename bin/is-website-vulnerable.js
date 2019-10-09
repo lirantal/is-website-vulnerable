@@ -22,8 +22,9 @@ if (!url) {
 }
 
 const audit = new Audit()
+const showProgressBar = !argv.json
 audit
-  .scanUrl(url)
+  .scanUrl(url, showProgressBar)
   .then(results => {
     var renderer
     if (argv.json) {
