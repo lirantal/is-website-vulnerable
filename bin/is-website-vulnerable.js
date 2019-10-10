@@ -30,7 +30,7 @@ audit
     if (argv.json) {
       renderer = new RenderJson(results)
     } else {
-      renderer = new RenderConsole(results)
+      renderer = new RenderConsole(results, argv.jsLib)
     }
     renderer.print()
   })

@@ -30,6 +30,30 @@ describe('RenderConsole', () => {
     })
   })
 
+  describe('Libraries formatters', () => {
+    test('No library information should render an empty string', () => {
+      const renderer = new RenderConsole({}, true)
+      const libraryInfo = renderer.formatLibraries()
+      expect(libraryInfo).toEqual('')
+    })
+
+    test('A library information should not return an empty layout', () => {
+      const results = require('./fixtures/multiple-libraries.json')
+      const renderer = new RenderConsole(results, true)
+
+      const libInfo = renderer.formatLibraries()
+      expect(libInfo).not.toBe('')
+    })
+
+    test(' Library flag should also support no library existing', () => {
+      const results = require('./fixtures/library-empty.json')
+      const renderer = new RenderConsole(results, true)
+
+      const libInfo = renderer.format()
+      expect(libInfo.match(/No JavaScript libraries detected/)).toBeTruthy()
+    })
+  })
+
   describe('Vulnerability formatters', () => {
     test('No vulnerability information should render an empty string', () => {
       const renderer = new RenderConsole({})
