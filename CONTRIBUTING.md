@@ -26,9 +26,4 @@ npm run test
 ### Commit Guidelines
 
 The project uses the commitizen tool for standardizing changelog style commit
-messages so you should follow it as so:
-
-```bash
-git add .           # add files to staging
-npm run commit      # use the wizard for the commit message
-```
+messages. The commit message is linted when you create a commit.
