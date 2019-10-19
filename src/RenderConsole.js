@@ -24,13 +24,20 @@ module.exports = class RenderConsole {
 
     const vulnerabilitiesResults = this.data.lhr.audits['no-vulnerable-libraries']
     let vulnerabilitiesCount = 0
-    if (this.showLibs) output += this.formatLibraries()
+    if (this.showLibs) {
+      output += this.formatLibraries()
+    }
 
     if (
       vulnerabilitiesResults.details &&
       vulnerabilitiesResults.details.items &&
       vulnerabilitiesResults.details.items.length > 0
     ) {
+      if (this.showLibs) {
+        output += `
+  Vulnerabilities:`
+      }
+
       vulnerabilitiesResults.details.items.forEach(vulnItem => {
         vulnerabilitiesCount += vulnItem.vulnCount
         const vulnInfo = this.formatVulnerability(vulnItem)
@@ -62,13 +69,15 @@ module.exports = class RenderConsole {
       jsLibrariesResult.details.items.length > 0
     ) {
       output = `
-            
+  
   Libraries:
             `
       jsLibrariesResult.details.items.forEach(jsLib => {
         output += `
-    [*] ${chalk.bold(jsLib.name)} ${jsLib.version || 'Version not avaliable'}`
+    [*] ${jsLib.name} ${jsLib.version || '(version not avaliable)'}`
       })
+      output += `
+`
     } else {
       output += `
   ○ No JavaScript libraries detected`
