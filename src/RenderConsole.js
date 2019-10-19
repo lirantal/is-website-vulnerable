@@ -5,8 +5,9 @@
 const chalk = require('chalk')
 
 module.exports = class RenderConsole {
-  constructor(scanResults) {
+  constructor(scanResults, showLibs) {
     this.data = scanResults
+    this.showLibs = showLibs
   }
 
   print() {
@@ -23,6 +24,7 @@ module.exports = class RenderConsole {
 
     const vulnerabilitiesResults = this.data.lhr.audits['no-vulnerable-libraries']
     let vulnerabilitiesCount = 0
+    if (this.showLibs) output += this.formatLibraries()
 
     if (
       vulnerabilitiesResults.details &&
@@ -46,6 +48,31 @@ module.exports = class RenderConsole {
   vulnerabilities powered by Snyk.io (https://snyk.io/vuln?type=npm)
     `
 
+    return output
+  }
+
+  formatLibraries() {
+    let output = ''
+    if (!this.data.lhr) return output
+
+    const jsLibrariesResult = this.data.lhr.audits['js-libraries']
+    if (
+      jsLibrariesResult.details &&
+      jsLibrariesResult.details.items &&
+      jsLibrariesResult.details.items.length > 0
+    ) {
+      output = `
+            
+  Libraries:
+            `
+      jsLibrariesResult.details.items.forEach(jsLib => {
+        output += `
+    [*] ${chalk.bold(jsLib.name)} ${jsLib.version || 'Version not avaliable'}`
+      })
+    } else {
+      output += `
+  ○ No JavaScript libraries detected`
+    }
     return output
   }
 
