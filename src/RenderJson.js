@@ -3,8 +3,9 @@
 'use strict'
 
 module.exports = class RenderJson {
-  constructor(scanResults) {
+  constructor(scanResults, showLibs) {
     this.data = scanResults
+    this.showLibs = showLibs
     this.noWarnings =
       'No JavaScript libraries detected with publicly known security vulnerabilities'
   }
@@ -32,16 +33,18 @@ module.exports = class RenderJson {
       result = this.noWarnings
     }
 
-    return JSON.stringify(
-      {
-        website: this.data.lhr.finalUrl,
-        executionTime: this.data.lhr.timing.total + ' ms',
-        totalVulnerabilities: vulnerabilitiesCount,
-        result
-      },
-      null,
-      2
-    )
+    const json = {
+      website: this.data.lhr.finalUrl,
+      executionTime: this.data.lhr.timing.total + ' ms',
+      totalVulnerabilities: vulnerabilitiesCount,
+      result
+    }
+
+    if (this.showLibs) {
+      json.libraries = this.formatLibraries()
+    }
+
+    return JSON.stringify(json, null, 2)
   }
 
   formatVulnerability(vulnItem) {
@@ -56,5 +59,25 @@ module.exports = class RenderJson {
       url: vulnItem.detectedLib.url
     }
     return output
+  }
+
+  formatLibraries() {
+    if (!this.data.lhr) return []
+
+    const jsLibrariesResult = this.data.lhr.audits['js-libraries']
+    if (
+      jsLibrariesResult &&
+      jsLibrariesResult.details &&
+      jsLibrariesResult.details.items &&
+      jsLibrariesResult.details.items.length > 0
+    ) {
+      return jsLibrariesResult.details.items.map(jsLib => {
+        return {
+          name: jsLib.name,
+          version: jsLib.version || '(version not avaliable)'
+        }
+      })
+    }
+    return []
   }
 }
