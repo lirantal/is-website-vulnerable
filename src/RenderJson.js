@@ -6,8 +6,6 @@ module.exports = class RenderJson {
   constructor(scanResults, showLibs) {
     this.data = scanResults
     this.showLibs = showLibs
-    this.noWarnings =
-      'No JavaScript libraries detected with publicly known security vulnerabilities'
   }
 
   print() {
@@ -18,7 +16,7 @@ module.exports = class RenderJson {
   format() {
     const vulnerabilitiesResults = this.data.lhr.audits['no-vulnerable-libraries']
     let vulnerabilitiesCount = 0
-    var result = []
+    const vulnerabilities = []
     if (
       vulnerabilitiesResults.details &&
       vulnerabilitiesResults.details.items &&
@@ -27,17 +25,15 @@ module.exports = class RenderJson {
       vulnerabilitiesResults.details.items.forEach(vulnItem => {
         vulnerabilitiesCount += vulnItem.vulnCount
         const vulnInfo = this.formatVulnerability(vulnItem)
-        result.push(vulnInfo)
+        vulnerabilities.push(vulnInfo)
       })
-    } else {
-      result = this.noWarnings
     }
 
     const json = {
       website: this.data.lhr.finalUrl,
       executionTime: this.data.lhr.timing.total + ' ms',
       totalVulnerabilities: vulnerabilitiesCount,
-      result
+      vulnerabilities
     }
 
     if (this.showLibs) {

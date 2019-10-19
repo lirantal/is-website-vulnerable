@@ -22,11 +22,7 @@ describe('JSON renderer', () => {
     const renderer = new RenderJson(results)
 
     const vulnInfo = renderer.format()
-    expect(
-      vulnInfo.match(
-        /No JavaScript libraries detected with publicly known security vulnerabilities/
-      )
-    ).toBeTruthy()
+    expect(vulnInfo.match(/"vulnerabilities": \[\]/)).toBeTruthy()
     expect(vulnInfo.match(/"totalVulnerabilities": 0/)).toBeTruthy()
   })
 
