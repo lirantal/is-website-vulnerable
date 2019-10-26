@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "eslint . && npm run lint:lockfile",
-    "lint:lockfile": "lockfile-lint --path yarn.lock --type yarn --validate-https --allowed-hosts npm yarn",
+    "lint:lockfile": "lockfile-lint --path npm-shrinkwrap.json --type npm --validate-https --allowed-hosts npm",
     "lint:fix": "eslint . --fix",
     "format": "prettier --config .prettierrc.js --write '**/*.js'",
     "test": "jest",
@@ -106,7 +106,7 @@
     "hooks": {
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
-      "post-merge": "yarn install",
+      "post-merge": "npm install",
       "pre-push": "npm run lint && npm run test"
     }
   },
