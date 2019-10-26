@@ -1,5 +1,6 @@
 const url = require('url')
-//Removing utm_* parameters from URL
+// Removing utm_* parameters from URL
+// eslint-disable-next-line security/detect-unsafe-regex
 const REGEX_UTM_TRIMMER = /(\?)utm[^&]*(?:&utm[^&]*)*&(?=(?!utm[^\s&=]*=)[^\s&=]+=)|\?utm[^&]*(?:&utm[^&]*)*$|&utm[^&]*/gi
 
 module.exports = {
