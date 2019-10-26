@@ -27,17 +27,19 @@ jobs:
         run: codecov
         
   release:
-      name: do semantic release
-      runs-on: ${{ matrix.platform }}
-      needs: build
-      steps:
-        - uses: actions/checkout@v1
-        - uses: actions/setup-node@v1
-          with:
-            node-version: '10'
-        - name: release
-          run: npm run semantic-release
-          if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-          env:
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-            NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+    name: do semantic release
+    runs-on: 'ubuntu-latest'
+    needs: build
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: install dependencies
+        run: npm install --ignore-engines
+      - name: release
+        run: npm run semantic-release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
