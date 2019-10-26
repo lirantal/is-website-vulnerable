@@ -23,7 +23,7 @@ module.exports = class Audit {
     }
   }
 
-  async scanUrl(url, progress = false) {
+  async scanUrl(url, optflags = {}, progress = false) {
     // Start chrome-launcher Spinner
 
     // chrome-launcher Spinner
@@ -57,6 +57,14 @@ module.exports = class Audit {
     time = new Date()
     const opts = {}
     opts.port = chromeInstance.port
+
+    if (Object.prototype.hasOwnProperty.call(optflags, 'emulatedFormFactor')) {
+      // https://github.com/GoogleChrome/lighthouse#cli-options refer --emulated-form-factor
+      debug(`setting up lighthouse device flag: ${opts.emulatedFormFactor}`)
+      opts.emulatedFormFactor = optflags.emulatedFormFactor
+    } else {
+      debug(`lighthouse default device flag: mobile`)
+    }
 
     debug(`invoking lighthouse scan for: ${url}`)
     const scanResult = await lighthouse(url, opts, {

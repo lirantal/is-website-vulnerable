@@ -40,4 +40,16 @@ describe('Audit', () => {
 
     expect(lighthouse.mock.calls[0][0]).toBe(url)
   })
+
+  test('a URL scan with device flag should result in calling lighthouse with that url & flag', async () => {
+    const url = 'https://abc.com'
+    const opts = {}
+    opts.emulatedFormFactor = 'mobile'
+
+    const audit = new Audit()
+    await audit.scanUrl(url, opts)
+
+    expect(lighthouse.mock.calls[0][0]).toBe(url)
+    expect(lighthouse.mock.calls[1][1]).toHaveProperty('emulatedFormFactor', 'mobile')
+  })
 })
