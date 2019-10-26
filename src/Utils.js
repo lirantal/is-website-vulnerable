@@ -1,4 +1,6 @@
 const url = require('url')
+//Removing utm_* parameters from URL
+const REGEX_UTM_TRIMMER = /(\?)utm[^&]*(?:&utm[^&]*)*&(?=(?!utm[^\s&=]*=)[^\s&=]+=)|\?utm[^&]*(?:&utm[^&]*)*$|&utm[^&]*/gi
 
 module.exports = {
   parseUrl: function(urlToScan) {
@@ -10,5 +12,10 @@ module.exports = {
     }
 
     return urlToScan
+  },
+  trimUtmParams: function(urlToTrim) {
+    if (urlToTrim === undefined) return urlToTrim
+
+    return urlToTrim.replace(REGEX_UTM_TRIMMER, '$1')
   }
 }
