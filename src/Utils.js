@@ -1,7 +1,4 @@
 const url = require('url')
-// Removing utm_* parameters from URL
-// eslint-disable-next-line security/detect-unsafe-regex
-const REGEX_UTM_TRIMMER = /(\?)utm[^&]*(?:&utm[^&]*)*&(?=(?!utm[^\s&=]*=)[^\s&=]+=)|\?utm[^&]*(?:&utm[^&]*)*$|&utm[^&]*/gi
 
 module.exports = {
   parseUrl: function(urlToScan) {
@@ -17,6 +14,19 @@ module.exports = {
   trimUtmParams: function(urlToTrim) {
     if (urlToTrim === undefined) return urlToTrim
 
-    return urlToTrim.replace(REGEX_UTM_TRIMMER, '$1')
+    // eslint-disable-next-line node/no-deprecated-api
+    const parsedUrl = url.parse(urlToTrim)
+    const queryParams = parsedUrl.query ? parsedUrl.query.split('&') : []
+    const nonUtmQueryParams = []
+    queryParams.forEach(queryParam => {
+      if (!queryParam.toLowerCase().startsWith('utm_')) {
+        nonUtmQueryParams.push(queryParam)
+      }
+    })
+    const auth = parsedUrl.auth ? `${parsedUrl.auth}@` : ''
+    const pathname = parsedUrl.pathname !== '/' ? parsedUrl.pathname : ''
+    const query = nonUtmQueryParams.length > 0 ? `?${nonUtmQueryParams.join('&')}` : ''
+    const hash = parsedUrl.hash ? parsedUrl.hash : ''
+    return `${parsedUrl.protocol}//${auth}${parsedUrl.host}${pathname}${query}${hash}`
   }
 }

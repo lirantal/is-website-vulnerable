@@ -47,4 +47,12 @@ describe('Utils', () => {
     const url = 'https://google.com?version=1&minor=5&source=github'
     expect(Utils.trimUtmParams(url)).toEqual(url)
   })
+  test('trimUtmParams function with url and auth given with no utm query params but with other query params', async () => {
+    const url = 'https://user:pass@google.com?version=1&minor=5&source=github'
+    expect(Utils.trimUtmParams(url)).toEqual(url)
+  })
+  test('trimUtmParams function with hash given with no utm query params but with other query params', async () => {
+    const url = 'https://user:pass@google.com?version=1&minor=5&source=github#hash'
+    expect(Utils.trimUtmParams(url)).toEqual(url)
+  })
 })
