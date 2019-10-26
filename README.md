@@ -10,7 +10,7 @@
   <a href="https://www.npmjs.org/package/is-website-vulnerable"><img src="https://badgen.net/npm/v/is-website-vulnerable" alt="npm version"/></a>
   <a href="https://www.npmjs.org/package/is-website-vulnerable"><img src="https://badgen.net/npm/license/is-website-vulnerable" alt="license"/></a>
   <a href="https://www.npmjs.org/package/is-website-vulnerable"><img src="https://badgen.net/npm/dt/is-website-vulnerable" alt="downloads"/></a>
-  <a href="https://travis-ci.org/lirantal/is-website-vulnerable"><img src="https://badgen.net/travis/lirantal/is-website-vulnerable" alt="build"/></a>
+  <a href="https://github.com/lirantal/is-website-vulnerable/actions?workflow=CI"><img src="https://github.com/lirantal/is-website-vulnerable/workflows/CI/badge.svg" alt="build"/></a>
   <a href="https://codecov.io/gh/lirantal/is-website-vulnerable"><img src="https://badgen.net/codecov/c/github/lirantal/is-website-vulnerable" alt="codecov"/></a>
   <a href="https://snyk.io/test/github/lirantal/is-website-vulnerable"><img src="https://snyk.io/test/github/lirantal/is-website-vulnerable/badge.svg" alt="Known Vulnerabilities"/></a>
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
