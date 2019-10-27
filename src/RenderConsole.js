@@ -3,6 +3,7 @@
 'use strict'
 
 const chalk = require('chalk')
+const { trimUtmParams } = require('./Utils')
 
 module.exports = class RenderConsole {
   constructor(scanResults, showLibs) {
@@ -96,7 +97,7 @@ module.exports = class RenderConsole {
     ⎜ ${this.formatSeverityChart(vulnItem.highestSeverity)} ${chalk
       .bgHex(this.formatSeverityColor(vulnItem.highestSeverity))
       .bold(` ${vulnItem.vulnCount} `)} vulnerabilities
-    ⎣ ${chalk.hex('#4b45a1')('▶')}︎ ${vulnItem.detectedLib.url}`
+    ⎣ ${chalk.hex('#4b45a1')('▶')}︎ ${trimUtmParams(vulnItem.detectedLib.url)}`
   }
 
   formatSeverityColor(severity) {

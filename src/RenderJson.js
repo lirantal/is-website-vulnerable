@@ -2,6 +2,8 @@
 /* eslint-disable indent */
 'use strict'
 
+const { trimUtmParams } = require('./Utils')
+
 module.exports = class RenderJson {
   constructor(scanResults) {
     this.data = scanResults
@@ -53,7 +55,7 @@ module.exports = class RenderJson {
       library: vulnItem.detectedLib.text,
       severity: vulnItem.highestSeverity,
       vulnerabilitiesCount: vulnItem.vulnCount,
-      url: vulnItem.detectedLib.url
+      url: trimUtmParams(vulnItem.detectedLib.url)
     }
     return output
   }
