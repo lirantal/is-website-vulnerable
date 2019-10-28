@@ -28,7 +28,7 @@ audit
   .then(results => {
     var renderer
     if (argv.json) {
-      renderer = new RenderJson(results)
+      renderer = new RenderJson(results, argv.jsLib)
     } else {
       renderer = new RenderConsole(results, argv.jsLib)
     }

@@ -75,7 +75,7 @@ module.exports = class RenderConsole {
             `
       jsLibrariesResult.details.items.forEach(jsLib => {
         output += `
-    [*] ${jsLib.name} ${jsLib.version || '(version not avaliable)'}`
+    [*] ${jsLib.name} ${jsLib.version || '(version not available)'}`
       })
       output += `
 `

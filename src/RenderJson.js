@@ -5,10 +5,9 @@
 const { trimUtmParams } = require('./Utils')
 
 module.exports = class RenderJson {
-  constructor(scanResults) {
+  constructor(scanResults, showLibs) {
     this.data = scanResults
-    this.noWarnings =
-      'No JavaScript libraries detected with publicly known security vulnerabilities'
+    this.showLibs = showLibs
   }
 
   print() {
@@ -19,7 +18,7 @@ module.exports = class RenderJson {
   format() {
     const vulnerabilitiesResults = this.data.lhr.audits['no-vulnerable-libraries']
     let vulnerabilitiesCount = 0
-    var result = []
+    const vulnerabilities = []
     if (
       vulnerabilitiesResults.details &&
       vulnerabilitiesResults.details.items &&
@@ -28,22 +27,22 @@ module.exports = class RenderJson {
       vulnerabilitiesResults.details.items.forEach(vulnItem => {
         vulnerabilitiesCount += vulnItem.vulnCount
         const vulnInfo = this.formatVulnerability(vulnItem)
-        result.push(vulnInfo)
+        vulnerabilities.push(vulnInfo)
       })
-    } else {
-      result = this.noWarnings
     }
 
-    return JSON.stringify(
-      {
-        website: this.data.lhr.finalUrl,
-        executionTime: this.data.lhr.timing.total + ' ms',
-        totalVulnerabilities: vulnerabilitiesCount,
-        result
-      },
-      null,
-      2
-    )
+    const json = {
+      website: this.data.lhr.finalUrl,
+      executionTime: this.data.lhr.timing.total + ' ms',
+      totalVulnerabilities: vulnerabilitiesCount,
+      vulnerabilities
+    }
+
+    if (this.showLibs) {
+      json.libraries = this.formatLibraries()
+    }
+
+    return JSON.stringify(json, null, 2)
   }
 
   formatVulnerability(vulnItem) {
@@ -58,5 +57,25 @@ module.exports = class RenderJson {
       url: trimUtmParams(vulnItem.detectedLib.url)
     }
     return output
+  }
+
+  formatLibraries() {
+    if (!this.data.lhr) return []
+
+    const jsLibrariesResult = this.data.lhr.audits['js-libraries']
+    if (
+      jsLibrariesResult &&
+      jsLibrariesResult.details &&
+      jsLibrariesResult.details.items &&
+      jsLibrariesResult.details.items.length > 0
+    ) {
+      return jsLibrariesResult.details.items.map(jsLib => {
+        return {
+          name: jsLib.name,
+          version: jsLib.version || '(version not available)'
+        }
+      })
+    }
+    return []
   }
 }
