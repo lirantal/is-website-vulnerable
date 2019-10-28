@@ -28,5 +28,19 @@ module.exports = {
     const query = nonUtmQueryParams.length > 0 ? `?${nonUtmQueryParams.join('&')}` : ''
     const hash = parsedUrl.hash ? parsedUrl.hash : ''
     return `${parsedUrl.protocol}//${auth}${parsedUrl.host}${pathname}${query}${hash}`
+  },
+  parseDevice: function(argv) {
+    let device = ''
+    if (argv.mobile) {
+      device = 'mobile'
+    } else if (argv.desktop) {
+      device = 'desktop'
+    } else if (argv.none) {
+      device = 'none'
+    }
+    return device
+  },
+  hasDevice: function(argv) {
+    return argv.mobile || argv.desktop || argv.none || false
   }
 }

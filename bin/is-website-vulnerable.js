@@ -21,10 +21,16 @@ if (!url) {
   process.exit(1)
 }
 
+const opts = {}
+
+if (Utils.hasDevice(argv)) {
+  opts.emulatedFormFactor = Utils.parseDevice(argv)
+}
+
 const audit = new Audit()
 const showProgressBar = !argv.json
 audit
-  .scanUrl(url, showProgressBar)
+  .scanUrl(url, opts, showProgressBar)
   .then(results => {
     var renderer
     if (argv.json) {
