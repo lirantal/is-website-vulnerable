@@ -70,7 +70,7 @@ module.exports = class RenderJson {
       return jsLibrariesResult.details.items.map(jsLib => {
         return {
           name: jsLib.name,
-          version: jsLib.version || '(version not avaliable)'
+          version: jsLib.version || '(version not available)'
         }
       })
     }
