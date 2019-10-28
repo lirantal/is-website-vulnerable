@@ -1,0 +1,45 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+        node: [ '12', '10' ]
+    name: Node ${{ matrix.node }} (${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: install dependencies
+        run: npm install --ignore-engines
+      - name: install codecov
+        run: npm install -g codecov
+      - name: lint code
+        run: npm run lint
+      - name: run tests
+        run: npm test
+      - name: get code coverage report
+        run: codecov
+        
+  release:
+    name: do semantic release
+    runs-on: 'ubuntu-latest'
+    needs: build
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: install dependencies
+        run: npm install --ignore-engines
+      - name: release
+        run: npm run semantic-release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'

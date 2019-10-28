@@ -17,8 +17,8 @@ const Ora = require('ora')
 const chalk = require('chalk')
 
 module.exports = class Audit {
-  constructor(lighthoutSettings) {
-    this.settings = lighthoutSettings || {
+  constructor(lighthouseSettings) {
+    this.settings = lighthouseSettings || {
       onlyAudits: ['no-vulnerable-libraries', 'js-libraries']
     }
   }

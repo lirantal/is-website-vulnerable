@@ -80,3 +80,6 @@ typings/
 .dynamodb/
 
 package-lock.json
+
+# IDE
+.vscode
