@@ -60,8 +60,8 @@ module.exports = class Audit {
 
     if (Object.prototype.hasOwnProperty.call(optflags, 'emulatedFormFactor')) {
       // https://github.com/GoogleChrome/lighthouse#cli-options refer --emulated-form-factor
-      debug(`setting up lighthouse device flag: ${opts.emulatedFormFactor}`)
       opts.emulatedFormFactor = optflags.emulatedFormFactor
+      debug(`setting up lighthouse device flag: ${opts.emulatedFormFactor}`)
     } else {
       debug(`lighthouse default device flag: mobile`)
     }
