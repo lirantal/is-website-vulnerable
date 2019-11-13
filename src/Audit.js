@@ -24,8 +24,6 @@ module.exports = class Audit {
   }
 
   async scanUrl(url, optflags = {}, progress = false) {
-    // Start chrome-launcher Spinner
-
     // chrome-launcher Spinner
     const spinner1 = new Ora({
       text: chalk.cyan('Setting up a chrome instance'),

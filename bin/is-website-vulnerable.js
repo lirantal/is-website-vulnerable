@@ -2,6 +2,7 @@
 /* eslint-disable no-process-exit */
 'use strict'
 
+const os = require('os')
 const debug = require('debug')('is-website-vulnerable')
 const argv = require('yargs').argv
 const { Audit, RenderConsole, RenderJson, Utils } = require('../index')
@@ -27,8 +28,20 @@ if (Utils.hasDevice(argv)) {
   opts.emulatedFormFactor = Utils.parseDevice(argv)
 }
 
+const isWindows = os.type() === 'Windows_NT'
+const isJson = !!argv.json
+const showProgressBar = !isJson && !isWindows
+
+if (isWindows && !isJson) {
+  console.log('Please wait, scanning the website (can take up to a minute)...')
+}
+
+debug(`detecting isWindows: ${isWindows}`)
+debug(`detecting isJson: ${isJson}`)
+debug(`showing progress bar: ${isWindows}`)
+
 const audit = new Audit()
-const showProgressBar = !argv.json
+
 audit
   .scanUrl(url, opts, showProgressBar)
   .then(results => {
