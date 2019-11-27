@@ -2,6 +2,7 @@
 'use strict'
 
 const debug = require('debug')('is-website-vulnerable')
+const argv = require('yargs').argv
 
 const nodeVersion = process.versions['node']
 const nodeVersionMajor = nodeVersion.split('.')[0]
@@ -39,10 +40,16 @@ module.exports = class Audit {
     })
 
     progress && spinner1.start()
+    const chromePath = argv.chromePath
+    const chromeOpts = Object.assign(
+      {
+        chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
+      },
+      chromePath && { chromePath }
+    )
+
     let time = new Date()
-    const chromeInstance = await chromeLauncher.launch({
-      chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
-    })
+    const chromeInstance = await chromeLauncher.launch(chromeOpts)
 
     // Stop chrome-launcher Spinner
     progress &&
