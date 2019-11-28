@@ -25,6 +25,8 @@ jobs:
         run: npm test
       - name: get code coverage report
         run: codecov
+        env:
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
         
   release:
     name: do semantic release
