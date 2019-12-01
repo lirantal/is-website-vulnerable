@@ -23,9 +23,9 @@ module.exports = class Audit {
     }
   }
 
-  async scanUrl(url, options = {}, progress = false) {
+  async scanUrl(url, options = {lighthouseOpts: {}, chromeOpts: {}}, progress = false) {
     const optflags = options.lighthouseOpts
-    const chromePath = options.chromeOpts.chromePath
+    const chromePath = (options.chromeOpts || {}).chromePath
     // chrome-launcher Spinner
     const spinner1 = new Ora({
       text: chalk.cyan('Setting up a chrome instance'),
