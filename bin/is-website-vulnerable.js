@@ -22,12 +22,6 @@ if (!url) {
   process.exit(1)
 }
 
-const opts = {}
-
-if (Utils.hasDevice(argv)) {
-  opts.emulatedFormFactor = Utils.parseDevice(argv)
-}
-
 const isWindows = os.type() === 'Windows_NT'
 const isJson = !!argv.json
 const showProgressBar = !isJson && !isWindows
@@ -39,6 +33,22 @@ if (isWindows && !isJson) {
 debug(`detecting isWindows: ${isWindows}`)
 debug(`detecting isJson: ${isJson}`)
 debug(`showing progress bar: ${isWindows}`)
+
+const opts = {
+  lighthouseOpts: {},
+  chromeOpts: {}
+}
+
+if (Utils.hasDevice(argv)) {
+  opts.lighthouseOpts = Object.assign(opts.lighthouseOpts, {
+    emulatedFormFactor: Utils.parseDevice(argv)
+  })
+}
+
+const chromePath = argv.chromePath
+if (chromePath) {
+  opts.chromeOpts = Object.assign(opts.chromeOpts, { chromePath })
+}
 
 const audit = new Audit()
 
