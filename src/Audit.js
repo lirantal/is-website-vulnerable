@@ -3,7 +3,7 @@
 
 const debug = require('debug')('is-website-vulnerable')
 
-const nodeVersion = process.versions['node']
+const nodeVersion = process.versions.node
 const nodeVersionMajor = nodeVersion.split('.')[0]
 debug(`detected Node.js version: ${nodeVersionMajor}`)
 if (nodeVersionMajor < 10) {
@@ -23,7 +23,9 @@ module.exports = class Audit {
     }
   }
 
-  async scanUrl(url, optflags = {}, progress = false) {
+  async scanUrl(url, options = {lighthouseOpts: {}, chromeOpts: {}}, progress = false) {
+    const optflags = options.lighthouseOpts
+    const chromePath = (options.chromeOpts || {}).chromePath
     // chrome-launcher Spinner
     const spinner1 = new Ora({
       text: chalk.cyan('Setting up a chrome instance'),
@@ -39,10 +41,14 @@ module.exports = class Audit {
     })
 
     progress && spinner1.start()
+    const chromeOpts = Object.assign(
+      {
+        chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
+      },
+      chromePath && { chromePath }
+    )
     let time = new Date()
-    const chromeInstance = await chromeLauncher.launch({
-      chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
-    })
+    const chromeInstance = await chromeLauncher.launch(chromeOpts)
 
     // Stop chrome-launcher Spinner
     progress &&
@@ -61,7 +67,7 @@ module.exports = class Audit {
       opts.emulatedFormFactor = optflags.emulatedFormFactor
       debug(`setting up lighthouse device flag: ${opts.emulatedFormFactor}`)
     } else {
-      debug(`lighthouse default device flag: mobile`)
+      debug('lighthouse default device flag: mobile')
     }
 
     debug(`invoking lighthouse scan for: ${url}`)
