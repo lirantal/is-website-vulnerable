@@ -39,6 +39,8 @@ Using Node.js's `npx` to run a one-off scan of a website:
 npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath]
 ```
 
+:warning: A modern version of Chrome is assumed to be available when using `is-website-vulnerable`. It may not be safe to assume that this is satisfied automatically on some CI services. For example, [additional configuration](https://docs.travis-ci.com/user/chrome#selecting-a-chrome-version) is necessary for [Travis CI](https://travis-ci.com/).
+
 # Install
 
 You can install globally via:
