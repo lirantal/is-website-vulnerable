@@ -39,6 +39,12 @@ Using Node.js's `npx` to run a one-off scan of a website:
 npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath]
 ```
 
+or directly from the command line, if installed globally, or from an npm script, if installed locally
+
+```bash
+is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath]
+```
+
 # Install
 
 You can install globally via:
@@ -46,6 +52,13 @@ You can install globally via:
 ```bash
 npm install -g is-website-vulnerable
 ```
+
+or locally via:
+
+```bash
+npm install is-website-vulnerable --save-dev
+```
+
 
 # Contributing
 
