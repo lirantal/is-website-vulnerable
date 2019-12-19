@@ -5,32 +5,40 @@
 const os = require('os')
 const debug = require('debug')('is-website-vulnerable')
 const argv = require('yargs').argv
-const inquirer = require('inquirer')
+const { prompt } = require('enquirer')
 const { Audit, RenderConsole, RenderJson, Utils } = require('../index')
 
 const main = async () => {
   let url = process.argv[2]
   debug(`received url argument: ${url}`)
 
-  url = Utils.parseUrl(url)
-
-  if (!url) {
-    console.error('Woops! You forgot to provide a URL of a website to scan.')
-
-    const question = {
-      type: 'input',
-      name: 'url',
-      message: 'Please provide a URL here:',
-      validate: input => input && input.length > 0
-    }
-
-    const answers = await inquirer.prompt(question)
-    url = answers.url
-  }
-
   const isWindows = os.type() === 'Windows_NT'
   const isJson = !!argv.json
   const showProgressBar = !isJson && !isWindows
+
+  if (!url) {
+    if (isJson) {
+      console.error('')
+      console.error('Error: please provide a URL of a website to scan.')
+      console.error('')
+      console.error('Usage:')
+      console.error('  is-website-vulnerable https://www.google.com')
+      console.error('')
+      process.exit(1)
+    } else {
+      console.error('Woops! You forgot to provide a URL of a website to scan.')
+
+      const response = await prompt({
+        type: 'input',
+        name: 'url',
+        message: 'Please provide a URL to scan:',
+        validate: input => input && input.length > 0
+      })
+      url = response.url
+    }
+  }
+
+  url = Utils.parseUrl(url)
 
   if (isWindows && !isJson) {
     console.log('Please wait, scanning the website (can take up to a minute)...')

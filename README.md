@@ -47,7 +47,7 @@ The CLI will gracefully handle cases where the URL to scan is missing by prompti
 ```
 $ npx is-website-vulnerable
 Woops! You forgot to provide a URL of a website to scan.
-? Please provide a URL here: https://example.com
+? Please provide a URL to scan: › https://example.com
 ...
 ```
 
