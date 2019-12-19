@@ -27,17 +27,40 @@
 
 </p>
 
+
 # About
 
 Finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
 
 # Usage
 
+## Commandline:
+
 Using Node.js's `npx` to run a one-off scan of a website:
 
 ```bash
 npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath]
 ```
+
+## Docker:
+
+To build and run the container locally:
+
+```
+# Clone Repo:
+git clone https://github.com/lirantal/is-website-vulnerable.git
+
+# Change to repo's cloned directory:
+cd is-website-vulnerable
+
+# Build Image locally:
+docker build -t lirantal/is-website-vulnerable:1.0 . --no-cache
+
+# Run container:
+docker run -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulnerable:1.0
+```
+
+`SCAN_URL` is an environment variable and the value for that can be replaced with desired URL during Docker run. Docker container will exit once the scan has been completed.
 
 :warning: A modern version of Chrome is assumed to be available when using `is-website-vulnerable`. It may not be safe to assume that this is satisfied automatically on some CI services. For example, [additional configuration](https://docs.travis-ci.com/user/chrome#selecting-a-chrome-version) is necessary for [Travis CI](https://travis-ci.com/).
 
