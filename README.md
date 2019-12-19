@@ -34,10 +34,10 @@ git clone https://github.com/lirantal/is-website-vulnerable.git
 cd is-website-vulnerable
 
 # Build Image locally:
-docker build -t local/is-website-vulnerable:1.0 . --no-cache
+docker build -t lirantal/is-website-vulnerable:1.0 . --no-cache
 
 # Run container:
-docker run -e SCAN_URL="https://www.google.com/" local/is-website-vulnerable:1.0
+docker run -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulnerable:1.0
 ```
 
 `SCAN_URL` is an environment variable and the value for that can be replaced with desired URL during Docker run. Docker container will exit once the scan has been completed.
