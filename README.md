@@ -42,6 +42,15 @@ Using Node.js's `npx` to run a one-off scan of a website:
 npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath]
 ```
 
+The CLI will gracefully handle cases where the URL is missing, and will prompt you to enter it:
+
+```
+$ npx is-website-vulnerable
+Woops! You forgot to provide a URL of a website to scan.
+? Please provide a URL here: https://example.com
+...
+```
+
 ## Docker:
 
 To build and run the container locally:
