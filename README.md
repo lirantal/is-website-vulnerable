@@ -1,12 +1,32 @@
-# is-website-vulnerable
+<p align="center"><h1 align="center">
+  is-website-vulnerable
+</h1>
 
-finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
+<p align="center">
+  finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
+</p>
 
-[![npm version](https://badgen.net/npm/v/is-website-vulnerable)](https://www.npmjs.org/package/is-website-vulnerable) [![license](https://badgen.net/npm/license/is-website-vulnerable)](https://www.npmjs.org/package/is-website-vulnerable) [![downloads](https://badgen.net/npm/dt/is-website-vulnerable)](https://www.npmjs.org/package/is-website-vulnerable) [![build](https://github.com/lirantal/is-website-vulnerable/workflows/CI/badge.svg)](https://github.com/lirantal/is-website-vulnerable/actions?workflow=CI) [![codecov](https://badgen.net/codecov/c/github/lirantal/is-website-vulnerable)](https://codecov.io/gh/lirantal/is-website-vulnerable) [![Known Vulnerabilities](https://snyk.io/test/github/lirantal/is-website-vulnerable/badge.svg)](https://snyk.io/test/github/lirantal/is-website-vulnerable) [![Responsible Disclosure Policy](https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg)](./SECURITY.md)
+<p align="center">
+  <a href="https://www.npmjs.org/package/is-website-vulnerable"><img src="https://badgen.net/npm/v/is-website-vulnerable" alt="npm version"/></a>
+  <a href="https://www.npmjs.org/package/is-website-vulnerable"><img src="https://badgen.net/npm/license/is-website-vulnerable" alt="license"/></a>
+  <a href="https://www.npmjs.org/package/is-website-vulnerable"><img src="https://badgen.net/npm/dt/is-website-vulnerable" alt="downloads"/></a>
+  <a href="https://github.com/lirantal/is-website-vulnerable/actions?workflow=CI"><img src="https://github.com/lirantal/is-website-vulnerable/workflows/CI/badge.svg" alt="build"/></a>
+  <a href="https://codecov.io/gh/lirantal/is-website-vulnerable"><img src="https://badgen.net/codecov/c/github/lirantal/is-website-vulnerable" alt="codecov"/></a>
+  <a href="https://snyk.io/test/github/lirantal/is-website-vulnerable"><img src="https://snyk.io/test/github/lirantal/is-website-vulnerable/badge.svg" alt="Known Vulnerabilities"/></a>
+  <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
+</p>
 
-![Screenshot of npm module called is website vulnerable that detects security vulnerabilities in websites based on Snyk database](./.github/is-website-vulnerable-logo.png)
+<p align="center">
+  <img src="./.github/is-website-vulnerable-logo.png" alt="Screenshot of npm module called is website vulnerable that detects security vulnerabilities in websites based on Snyk database" />
+  
+  <p align="center">
+  	<p align="center">Many thanks to <a href="https://snyk.io"><img src="./.github/snyk-logo.png" width="100"></a> for supporting open source security</p>
+    
+</p>
 
-Many thanks to [![](./.github/snyk-logo.png)](https://snyk.io) for supporting open source security
+
+</p>
+
 
 # About
 
