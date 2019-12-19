@@ -5,56 +5,61 @@
 const os = require('os')
 const debug = require('debug')('is-website-vulnerable')
 const argv = require('yargs').argv
+const inquirer = require('inquirer')
 const { Audit, RenderConsole, RenderJson, Utils } = require('../index')
 
-let url = process.argv[2]
-debug(`received url argument: ${url}`)
+const main = async () => {
+  let url = process.argv[2]
+  debug(`received url argument: ${url}`)
 
-url = Utils.parseUrl(url)
+  url = Utils.parseUrl(url)
 
-if (!url) {
-  console.error('')
-  console.error('error: please provide a URL of a website to scan')
-  console.error('')
-  console.error('Usage:')
-  console.error('  is-website-vulnerable https://www.google.com')
-  console.error('')
-  process.exit(1)
-}
+  if (!url) {
+    console.error('Woops! You forgot to provide a URL of a website to scan.')
 
-const isWindows = os.type() === 'Windows_NT'
-const isJson = !!argv.json
-const showProgressBar = !isJson && !isWindows
+    const question = {
+      type: 'input',
+      name: 'url',
+      message: 'Please provide a URL here:',
+      validate: input => input && input.length > 0
+    }
 
-if (isWindows && !isJson) {
-  console.log('Please wait, scanning the website (can take up to a minute)...')
-}
+    const answers = await inquirer.prompt(question)
+    url = answers.url
+  }
 
-debug(`detecting isWindows: ${isWindows}`)
-debug(`detecting isJson: ${isJson}`)
-debug(`showing progress bar: ${isWindows}`)
+  const isWindows = os.type() === 'Windows_NT'
+  const isJson = !!argv.json
+  const showProgressBar = !isJson && !isWindows
 
-const opts = {
-  lighthouseOpts: {},
-  chromeOpts: {}
-}
+  if (isWindows && !isJson) {
+    console.log('Please wait, scanning the website (can take up to a minute)...')
+  }
 
-if (Utils.hasDevice(argv)) {
-  opts.lighthouseOpts = Object.assign(opts.lighthouseOpts, {
-    emulatedFormFactor: Utils.parseDevice(argv)
-  })
-}
+  debug(`detecting isWindows: ${isWindows}`)
+  debug(`detecting isJson: ${isJson}`)
+  debug(`showing progress bar: ${isWindows}`)
 
-const chromePath = argv.chromePath
-if (chromePath) {
-  opts.chromeOpts = Object.assign(opts.chromeOpts, { chromePath })
-}
+  const opts = {
+    lighthouseOpts: {},
+    chromeOpts: {}
+  }
 
-const audit = new Audit()
+  if (Utils.hasDevice(argv)) {
+    opts.lighthouseOpts = Object.assign(opts.lighthouseOpts, {
+      emulatedFormFactor: Utils.parseDevice(argv)
+    })
+  }
 
-audit
-  .scanUrl(url, opts, showProgressBar)
-  .then(results => {
+  const chromePath = argv.chromePath
+  if (chromePath) {
+    opts.chromeOpts = Object.assign(opts.chromeOpts, { chromePath })
+  }
+
+  const audit = new Audit()
+
+  try {
+    const results = await audit.scanUrl(url, opts, showProgressBar)
     var renderer
     if (argv.json) {
       renderer = new RenderJson(results, argv.jsLib)
@@ -62,8 +67,8 @@ audit
       renderer = new RenderConsole(results, argv.jsLib)
     }
     renderer.print()
-  })
-  .catch(error => {
+    process.exit(0)
+  } catch (error) {
     console.error('')
     console.log(error)
 
@@ -73,4 +78,7 @@ audit
     console.error('')
 
     process.exit(1)
-  })
+  }
+}
+
+main()
