@@ -42,7 +42,7 @@ Using Node.js's `npx` to run a one-off scan of a website:
 npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath]
 ```
 
-The CLI will gracefully handle cases where the URL is missing, and will prompt you to enter it:
+The CLI will gracefully handle cases where the URL to scan is missing by prompting you to enter it:
 
 ```
 $ npx is-website-vulnerable
