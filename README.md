@@ -28,7 +28,10 @@ To build and run the container locally:
 
 ```
 # Clone Repo:
-git clone
+git clone https://github.com/lirantal/is-website-vulnerable.git
+
+# Change to repo's cloned directory:
+cd is-website-vulnerable
 
 # Build Image locally:
 docker build -t local/is-website-vulnerable:1.0 . --no-cache
