@@ -18,23 +18,21 @@ const main = async () => {
 
   if (!url) {
     if (isJson) {
-      console.error('')
-      console.error('Error: please provide a URL of a website to scan.')
-      console.error('')
-      console.error('Usage:')
-      console.error('  is-website-vulnerable https://www.google.com')
-      console.error('')
-      process.exit(1)
+      throw new Error('Please provide a URL of a website to scan')
     } else {
       console.error('Woops! You forgot to provide a URL of a website to scan.')
 
-      const response = await prompt({
-        type: 'input',
-        name: 'url',
-        message: 'Please provide a URL to scan:',
-        validate: input => input && input.length > 0
-      })
-      url = response.url
+      try {
+        const response = await prompt({
+          type: 'input',
+          name: 'url',
+          message: 'Please provide a URL to scan:',
+          validate: input => input && input.length > 0
+        })
+        url = response.url
+      } catch (_) {
+        throw new Error('URL input prompt failed')
+      }
     }
   }
 
@@ -66,27 +64,34 @@ const main = async () => {
 
   const audit = new Audit()
 
+  let results
   try {
-    const results = await audit.scanUrl(url, opts, showProgressBar)
-    var renderer
-    if (argv.json) {
-      renderer = new RenderJson(results, argv.jsLib)
-    } else {
-      renderer = new RenderConsole(results, argv.jsLib)
-    }
-    renderer.print()
-    process.exit(0)
+    // eslint-disable-line no-useless-catch
+    results = await audit.scanUrl(url, opts, showProgressBar)
   } catch (error) {
-    console.error('')
-    console.log(error)
-
-    console.error('')
-    console.error('Usage:')
-    console.error('  is-website-vulnerable https://www.example.com')
-    console.error('')
-
-    process.exit(1)
+    throw error
   }
+  if (results.lhr.runtimeError) {
+    throw new Error(results.lhr.runtimeError.message)
+  }
+
+  let renderer
+  if (argv.json) {
+    renderer = new RenderJson(results, argv.jsLib)
+  } else {
+    renderer = new RenderConsole(results, argv.jsLib)
+  }
+  renderer.print()
+
+  process.exit(0)
 }
 
-main()
+;(async () => {
+  try {
+    await main()
+  } catch (error) {
+    console.error(`\nError: ${error.message}\n`)
+    console.error('Usage:\n  is-website-vulnerable https://www.google.com\n\n')
+    process.exit(1)
+  }
+})()
