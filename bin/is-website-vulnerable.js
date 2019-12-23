@@ -6,6 +6,7 @@ const os = require('os')
 const debug = require('debug')('is-website-vulnerable')
 const argv = require('yargs').argv
 const { prompt } = require('enquirer')
+const isUrl = require('is-url-superb')
 const chalk = require("chalk")
 const { Audit, RenderConsole, RenderJson, Utils } = require('../index')
 
@@ -29,13 +30,17 @@ const showProgressBar = !isJson && !isWindows
             type: 'input',
             name: 'url',
             message: 'Please provide a URL to scan:',
-            validate: input => input && input.length > 0
+            validate: input => input && input.length > 0 && isUrl(input)
           })
           url = response.url
         } catch (_) {
           throw new Error('URL input prompt failed')
         }
       }
+    }
+
+    if (!isUrl(url)) {
+      throw new Error("Given argument is an invalid URL")
     }
   
     url = Utils.parseUrl(url)

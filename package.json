@@ -45,6 +45,7 @@
     "chalk": "2.4.2",
     "debug": "4.1.1",
     "enquirer": "^2.3.2",
+    "is-url-superb": "^3.0.0",
     "lighthouse": "5.2.0",
     "ora": "4.0.2",
     "yargs": "14.2.0"
