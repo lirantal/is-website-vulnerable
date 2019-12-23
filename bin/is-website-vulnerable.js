@@ -65,8 +65,8 @@ const main = async () => {
   const audit = new Audit()
 
   let results
+  // eslint-disable-next-line no-useless-catch
   try {
-    // eslint-disable-line no-useless-catch
     results = await audit.scanUrl(url, opts, showProgressBar)
   } catch (error) {
     throw error
