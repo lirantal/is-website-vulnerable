@@ -43,7 +43,7 @@ describe('Audit', () => {
 
   test('a URL scan with device flag should result in calling lighthouse with that url & flag', async () => {
     const url = 'https://abc.com'
-    const opts = {lighthouseOpts: {}, chromeOpts: {}}
+    const opts = { lighthouseOpts: {}, chromeOpts: {} }
     opts.lighthouseOpts.emulatedFormFactor = 'mobile'
 
     const audit = new Audit()

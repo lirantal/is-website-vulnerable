@@ -23,7 +23,7 @@ module.exports = class Audit {
     }
   }
 
-  async scanUrl(url, options = {lighthouseOpts: {}, chromeOpts: {}}, progress = false) {
+  async scanUrl(url, options = { lighthouseOpts: {}, chromeOpts: {} }, progress = false) {
     const optflags = options.lighthouseOpts
     const chromePath = (options.chromeOpts || {}).chromePath
     // chrome-launcher Spinner
