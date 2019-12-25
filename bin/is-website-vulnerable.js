@@ -7,7 +7,6 @@ const debug = require('debug')('is-website-vulnerable')
 const argv = require('yargs').argv
 const { prompt } = require('enquirer')
 const isUrl = require('is-url-superb')
-const chalk = require('chalk')
 const { Audit, RenderConsole, RenderJson, Utils } = require('../index')
 
 let url = process.argv[2]
@@ -86,7 +85,7 @@ const showProgressBar = !isJson && !isWindows
 
     process.exit(0)
   } catch (error) {
-    console.error(`\n${chalk.red.underline('Error')}: ${error.message}\n`)
+    console.error(`\nError: ${error.message}\n`)
     console.error('Usage:\n  is-website-vulnerable https://www.google.com\n\n')
     process.exit(1)
   }
