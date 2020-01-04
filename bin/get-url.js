@@ -4,7 +4,7 @@ const { prompt } = require('enquirer')
 const isUrl = require('is-url-superb')
 const { Utils } = require('../index')
 
-const validate = url => {
+const validate = function(url) {
   if (!isUrl(url)) {
     throw new Error('Given argument is an invalid URL')
   }
@@ -12,7 +12,7 @@ const validate = url => {
   return Utils.parseUrl(url)
 }
 
-const getUrl = async (url, isJson) => {
+const getUrl = async function(url, isJson) {
   debug(`received url argument: ${url}`)
   if (url) {
     return validate(url)
@@ -29,7 +29,9 @@ const getUrl = async (url, isJson) => {
       type: 'input',
       name: 'url',
       message: 'Please provide a URL to scan:',
-      validate: input => input && input.length > 0 && isUrl(input)
+      validate(input) {
+        return input && input.length > 0 && isUrl(input)
+      }
     })
 
     return validate(response.url)

@@ -24,9 +24,10 @@ module.exports = class RenderJson {
       vulnerabilitiesResults.details.items &&
       vulnerabilitiesResults.details.items.length > 0
     ) {
-      vulnerabilitiesResults.details.items.forEach(vulnItem => {
+      const that = this
+      vulnerabilitiesResults.details.items.forEach(function(vulnItem) {
         vulnerabilitiesCount += vulnItem.vulnCount
-        const vulnInfo = this.formatVulnerability(vulnItem)
+        const vulnInfo = that.formatVulnerability(vulnItem)
         vulnerabilities.push(vulnInfo)
       })
     }
@@ -69,7 +70,7 @@ module.exports = class RenderJson {
       jsLibrariesResult.details.items &&
       jsLibrariesResult.details.items.length > 0
     ) {
-      return jsLibrariesResult.details.items.map(jsLib => {
+      return jsLibrariesResult.details.items.map(function(jsLib) {
         return {
           name: jsLib.name,
           version: jsLib.version || '(version not available)'

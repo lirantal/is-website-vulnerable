@@ -38,10 +38,10 @@ module.exports = class RenderConsole {
         output += `
   Vulnerabilities:`
       }
-
-      vulnerabilitiesResults.details.items.forEach(vulnItem => {
+      const that = this
+      vulnerabilitiesResults.details.items.forEach(function(vulnItem) {
         vulnerabilitiesCount += vulnItem.vulnCount
-        const vulnInfo = this.formatVulnerability(vulnItem)
+        const vulnInfo = that.formatVulnerability(vulnItem)
         output += vulnInfo
       })
     } else {
@@ -73,7 +73,7 @@ module.exports = class RenderConsole {
   
   Libraries:
             `
-      jsLibrariesResult.details.items.forEach(jsLib => {
+      jsLibrariesResult.details.items.forEach(function(jsLib) {
         output += `
     [*] ${jsLib.name} ${jsLib.version || '(version not available)'}`
       })

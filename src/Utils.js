@@ -18,7 +18,7 @@ module.exports = {
     const parsedUrl = url.parse(urlToTrim)
     const queryParams = parsedUrl.query ? parsedUrl.query.split('&') : []
     const nonUtmQueryParams = []
-    queryParams.forEach(queryParam => {
+    queryParams.forEach(function(queryParam) {
       if (!queryParam.toLowerCase().startsWith('utm_')) {
         nonUtmQueryParams.push(queryParam)
       }
