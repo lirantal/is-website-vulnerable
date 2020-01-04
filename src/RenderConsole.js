@@ -1,6 +1,6 @@
 /* eslint-disable security/detect-object-injection */
 /* eslint-disable indent */
-'use strict'
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 
 const chalk = require('chalk')
 const { trimUtmParams } = require('./Utils')

@@ -1,6 +1,6 @@
 /* eslint-disable security/detect-object-injection */
 /* eslint-disable indent */
-'use strict'
+/* eslint no-console: ["error", { allow: ["error", "log"] }] */
 
 const { trimUtmParams } = require('./Utils')
 
@@ -50,7 +50,7 @@ module.exports = class RenderJson {
       return ''
     }
 
-    var output = {
+    const output = {
       library: vulnItem.detectedLib.text,
       severity: vulnItem.highestSeverity,
       vulnerabilitiesCount: vulnItem.vulnCount,

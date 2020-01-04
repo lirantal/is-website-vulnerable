@@ -1,5 +1,4 @@
 /* eslint-disable node/no-extraneous-require */
-'use strict'
 
 const debug = require('debug')('is-website-vulnerable')
 

@@ -1,7 +1,7 @@
 const url = require('url')
 
 module.exports = {
-  parseUrl: function(urlToScan) {
+  parseUrl(urlToScan) {
     if (urlToScan === undefined) return urlToScan
 
     // eslint-disable-next-line node/no-deprecated-api
@@ -11,7 +11,7 @@ module.exports = {
 
     return urlToScan
   },
-  trimUtmParams: function(urlToTrim) {
+  trimUtmParams(urlToTrim) {
     if (urlToTrim === undefined) return urlToTrim
 
     // eslint-disable-next-line node/no-deprecated-api
@@ -29,7 +29,7 @@ module.exports = {
     const hash = parsedUrl.hash ? parsedUrl.hash : ''
     return `${parsedUrl.protocol}//${auth}${parsedUrl.host}${pathname}${query}${hash}`
   },
-  parseDevice: function(argv) {
+  parseDevice(argv) {
     let device = ''
     if (argv.mobile) {
       device = 'mobile'
@@ -40,7 +40,7 @@ module.exports = {
     }
     return device
   },
-  hasDevice: function(argv) {
+  hasDevice(argv) {
     return argv.mobile || argv.desktop || argv.none || false
   }
 }
