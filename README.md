@@ -64,7 +64,7 @@ cd is-website-vulnerable
 docker build --no-cache -t lirantal/is-website-vulnerable:latest .
 
 # Run container:
-docker run --rm -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulnerable:1.0
+docker run --rm -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulnerable:latest
 ```
 
 `SCAN_URL` is an environment variable and its value must be replaced with the desired URL during Docker run. Docker container will exit once the scan has been completed.
