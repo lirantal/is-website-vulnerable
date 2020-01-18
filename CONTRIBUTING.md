@@ -15,7 +15,7 @@ This project and everyone participating in it is governed by a [Code of Conduct]
 
 ### Tests
 
-Make sure you the code you're adding has decent test coverage.
+Make sure the code you're adding has decent test coverage.
 
 Running project tests and coverage:
 
