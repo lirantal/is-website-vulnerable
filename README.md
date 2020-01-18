@@ -18,10 +18,8 @@
 
 <p align="center">
   <img src="./.github/is-website-vulnerable-logo.png" alt="Screenshot of npm module called is website vulnerable that detects security vulnerabilities in websites based on Snyk database" />
-  
   <p align="center">
   	<p align="center">Many thanks to <a href="https://snyk.io"><img src="./.github/snyk-logo.png" width="100"></a> for supporting open source security</p>
-    
 </p>
 
 
@@ -30,11 +28,11 @@
 
 # About
 
-Finds publicly known security vulnerabilities in a website's frontend JavaScript libraries
+Finds publicly known security vulnerabilities in a website's frontend JavaScript libraries.
 
 # Usage
 
-## Commandline:
+## Command line
 
 Using Node.js's `npx` to run a one-off scan of a website:
 
@@ -44,18 +42,18 @@ npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--de
 
 The CLI will gracefully handle cases where the URL to scan is missing by prompting you to enter it:
 
-```
+```bash
 $ npx is-website-vulnerable
 Woops! You forgot to provide a URL of a website to scan.
 ? Please provide a URL to scan: › https://example.com
 ...
 ```
 
-## Docker:
+## Docker
 
 To build and run the container locally:
 
-```
+```bash
 # Clone Repo:
 git clone https://github.com/lirantal/is-website-vulnerable.git
 
@@ -63,13 +61,13 @@ git clone https://github.com/lirantal/is-website-vulnerable.git
 cd is-website-vulnerable
 
 # Build Image locally:
-docker build -t lirantal/is-website-vulnerable:1.0 . --no-cache
+docker build --no-cache -t lirantal/is-website-vulnerable:latest .
 
 # Run container:
-docker run -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulnerable:1.0
+docker run --rm -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulnerable:1.0
 ```
 
-`SCAN_URL` is an environment variable and the value for that can be replaced with desired URL during Docker run. Docker container will exit once the scan has been completed.
+`SCAN_URL` is an environment variable and its value must be replaced with the desired URL during Docker run. Docker container will exit once the scan has been completed.
 
 :warning: A modern version of Chrome is assumed to be available when using `is-website-vulnerable`. It may not be safe to assume that this is satisfied automatically on some CI services. For example, [additional configuration](https://docs.travis-ci.com/user/chrome#selecting-a-chrome-version) is necessary for [Travis CI](https://travis-ci.com/).
 
