@@ -71,6 +71,23 @@ docker run --rm -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulner
 
 :warning: A modern version of Chrome is assumed to be available when using `is-website-vulnerable`. It may not be safe to assume that this is satisfied automatically on some CI services. For example, [additional configuration](https://docs.travis-ci.com/user/chrome#selecting-a-chrome-version) is necessary for [Travis CI](https://travis-ci.com/).
 
+# Github Action
+Create .github/workflows/is-website-vulnerable.yml with the url that you want scanned:
+
+```
+name: Test site for publicly known js vulnerabilities
+
+on: push
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test for public javascript library vulnerabilities 
+        uses: lirantal/is-website-vulnerable@master
+        with:
+          scan-url: "https://yoursite.com"
+```
+
 # Install
 
 You can install globally via:
