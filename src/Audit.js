@@ -23,6 +23,20 @@ module.exports = class Audit {
     }
   }
 
+  hasVulnerabilities(scanResult) {
+    const vulnerableAudit = scanResult.lhr.audits['no-vulnerable-libraries']
+
+    if (
+      vulnerableAudit.details &&
+      vulnerableAudit.details.items &&
+      vulnerableAudit.details.items.length > 0
+    ) {
+      return true
+    }
+
+    return false
+  }
+
   async scanUrl(url, options = { lighthouseOpts: {}, chromeOpts: {} }, progress = false) {
     const optflags = options.lighthouseOpts
     const chromePath = (options.chromeOpts || {}).chromePath

@@ -52,6 +52,10 @@ function getLighthouseOptions() {
       : new RenderConsole(results, argv.jsLib)
     renderer.print()
 
+    if (audit.hasVulnerabilities(results)) {
+      process.exit(2)
+    }
+
     process.exit(0)
   } catch (error) {
     console.error(`\nError: ${error.message}\n`)
