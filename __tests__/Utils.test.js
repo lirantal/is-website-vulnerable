@@ -83,4 +83,38 @@ describe('Utils', () => {
     expect(Utils.parseDevice(argv)).toEqual(device)
     expect(Utils.hasDevice(argv)).toEqual(true)
   })
+
+  test('hasAutentication & parseAutentication with none flag', async () => {
+    const argv = {}
+    expect(Utils.parseAutentication(argv)).toEqual({})
+    expect(Utils.hasAutentication(argv)).toEqual(false)
+  })
+
+  test('hasAutentication & parseAutentication with cookie flag', async () => {
+    const argv = { cookie: 'This is the COOKIE content' }
+    expect(Utils.parseAutentication(argv)).toEqual({
+      Cookie: 'This is the COOKIE content'
+    })
+    expect(Utils.hasAutentication(argv)).toEqual(true)
+  })
+
+  test('hasAutentication & parseAutentication with token flag', async () => {
+    const argv = { token: 'This is the TOKEN content' }
+    expect(Utils.parseAutentication(argv)).toEqual({
+      Authorization: 'Bearer This is the TOKEN content'
+    })
+    expect(Utils.hasAutentication(argv)).toEqual(true)
+  })
+
+  test('hasAutentication & parseAutentication with token and cookie flags', async () => {
+    const argv = {
+      cookie: 'This is the COOKIE content',
+      token: 'This is the TOKEN content'
+    }
+    expect(Utils.parseAutentication(argv)).toEqual({
+      Cookie: 'This is the COOKIE content',
+      Authorization: 'Bearer This is the TOKEN content'
+    })
+    expect(Utils.hasAutentication(argv)).toEqual(true)
+  })
 })

@@ -42,5 +42,20 @@ module.exports = {
   },
   hasDevice: function(argv) {
     return argv.mobile || argv.desktop || argv.none || false
+  },
+  parseAutentication: function(argv) {
+    const extraHeaders = {}
+    if (argv.cookie) {
+      extraHeaders.Cookie = argv.cookie
+    }
+
+    if (argv.token) {
+      extraHeaders.Authorization = `Bearer ${argv.token}`
+    }
+
+    return extraHeaders
+  },
+  hasAutentication: function(argv) {
+    return ['cookie', 'token'].some(prop => Object.hasOwnProperty.call(argv, prop))
   }
 }
