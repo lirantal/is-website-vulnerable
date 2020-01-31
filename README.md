@@ -37,7 +37,7 @@ Finds publicly known security vulnerabilities in a website's frontend JavaScript
 Using Node.js's `npx` to run a one-off scan of a website:
 
 ```bash
-npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath]
+npx is-website-vulnerable https://example.com [--json] [--js-lib] [--mobile|--desktop] [--chromePath] [--cookie] [--token]
 ```
 
 The CLI will gracefully handle cases where the URL to scan is missing by prompting you to enter it:

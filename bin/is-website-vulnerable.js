@@ -4,7 +4,7 @@
 
 const os = require('os')
 const debug = require('debug')('is-website-vulnerable')
-const argv = require('yargs').argv
+const { argv } = require('yargs')
 const { Audit, RenderConsole, RenderJson, Utils } = require('../index')
 const promptUrlInput = require('./prompt-url-input')
 
@@ -17,9 +17,16 @@ function detectEnvironment() {
 }
 
 function getLighthouseOptions() {
-  const lighthouseOpts = Utils.hasDevice(argv)
-    ? { emulatedFormFactor: Utils.parseDevice(argv) }
-    : {}
+  const lighthouseOpts = {}
+
+  if (Utils.hasDevice(argv)) {
+    lighthouseOpts.emulatedFormFactor = Utils.parseDevice(argv)
+  }
+
+  if (Utils.hasAutentication(argv)) {
+    lighthouseOpts.extraHeaders = Utils.parseAutentication(argv)
+  }
+
   const { chromePath } = argv
   const chromeOpts = chromePath ? { chromePath } : {}
 
