@@ -17,7 +17,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "deps:audit": "npm audit && npm outdated",
+    "deps:sec-scan": "snyk test",
+    "deps:upgrade": "npm run deps:audit; npm run deps:sec-scan; ncu -u && npm install"
   },
   "author": {
     "name": "Liran Tal",
@@ -72,9 +75,11 @@
     "jest": "^24.8.0",
     "lint-staged": "^9.2.0",
     "lockfile-lint": "^2.0.1",
+    "npm-check-updates": "^4.0.1",
     "open-cli": "^5.0.0",
     "prettier": "^1.18.2",
-    "semantic-release": "^16.0.0-beta.42"
+    "semantic-release": "^16.0.0-beta.42",
+    "snyk": "^1.288.0"
   },
   "jest": {
     "testEnvironment": "node",
