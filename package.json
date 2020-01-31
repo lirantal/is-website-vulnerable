@@ -17,8 +17,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
-    "semantic-release": "semantic-release",
-    "deps:upgrade": "ncu -u && npm install"
+    "semantic-release": "semantic-release"
   },
   "author": {
     "name": "Liran Tal",
