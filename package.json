@@ -110,7 +110,7 @@
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
       "post-merge": "npm install",
-      "pre-push": "npm run lint && npm run test"
+      "pre-push": "npm run lint && npm run deps:audit && npm run deps:sec-scan && npm run test"
     }
   },
   "lint-staged": {
