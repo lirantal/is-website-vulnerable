@@ -107,7 +107,7 @@ module.exports = class RenderConsole {
       High: '#b31a6b'
     }
 
-    return colorSeverityMap[severity] || colorSeverityMap['Low']
+    return colorSeverityMap[severity] || colorSeverityMap.Low
   }
 
   formatSeverityChart(severity) {
