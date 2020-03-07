@@ -1,5 +1,8 @@
 name: 'Is Website vulnerable'
 description: 'Scans a url for public javascript library vulnerabilities'
+branding:
+  icon: 'alert-circle'  
+  color: 'purple'
 inputs:
   scan-url:
     description: 'Website url to scan'
