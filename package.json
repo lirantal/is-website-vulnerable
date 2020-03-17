@@ -48,7 +48,7 @@
     "is-url-superb": "^3.0.0",
     "lighthouse": "5.6.0",
     "ora": "4.0.3",
-    "yargs": "15.1.0"
+    "yargs": "15.3.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
