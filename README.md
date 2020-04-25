@@ -74,7 +74,7 @@ docker run --rm -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulner
 # Github Action
 Create .github/workflows/is-website-vulnerable.yml with the url that you want scanned:
 
-```
+```yaml
 name: Test site for publicly known js vulnerabilities
 
 on: push
