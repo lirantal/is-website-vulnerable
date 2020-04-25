@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest]
-        node: [ '12', '10' ]
+        node: ['12', '10']
     name: Node ${{ matrix.node }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
@@ -27,7 +27,7 @@ jobs:
         run: codecov
         env:
           CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
-        
+
   release:
     name: do semantic release
     runs-on: 'ubuntu-latest'
@@ -39,6 +39,8 @@ jobs:
           node-version: '10'
       - name: install dependencies
         run: npm install --ignore-engines
+      - name: prune devDeps from shrinkwrap file
+        run: npx lockfile-prune npm-shrinkwrap.json
       - name: release
         run: npm run semantic-release
         env:
