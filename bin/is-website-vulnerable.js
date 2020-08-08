@@ -65,7 +65,11 @@ function getLighthouseOptions() {
 
     process.exit(0)
   } catch (error) {
-    console.error(`\nError: ${error.message}\n`)
+    const errorMessage =
+      error.code === 'PROTOCOL_TIMEOUT'
+        ? 'The request has timed out. Chrome is taking too long to respond.'
+        : error.message
+    console.error(`\nError: ${errorMessage}\n`)
     console.error('Usage:\n  is-website-vulnerable https://www.google.com\n\n')
     process.exit(1)
   }
