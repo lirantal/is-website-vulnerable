@@ -23,8 +23,8 @@ function getLighthouseOptions() {
     lighthouseOpts.emulatedFormFactor = Utils.parseDevice(argv)
   }
 
-  if (Utils.hasAutentication(argv)) {
-    lighthouseOpts.extraHeaders = Utils.parseAutentication(argv)
+  if (Utils.hasAuthentication(argv)) {
+    lighthouseOpts.extraHeaders = Utils.parseAuthentication(argv)
   }
 
   const { chromePath } = argv
