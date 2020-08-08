@@ -84,37 +84,37 @@ describe('Utils', () => {
     expect(Utils.hasDevice(argv)).toEqual(true)
   })
 
-  test('hasAutentication & parseAutentication with none flag', async () => {
+  test('hasAuthentication & parseAuthentication with no flag', async () => {
     const argv = {}
-    expect(Utils.parseAutentication(argv)).toEqual({})
-    expect(Utils.hasAutentication(argv)).toEqual(false)
+    expect(Utils.parseAuthentication(argv)).toEqual({})
+    expect(Utils.hasAuthentication(argv)).toEqual(false)
   })
 
-  test('hasAutentication & parseAutentication with cookie flag', async () => {
+  test('hasAuthentication & parseAuthentication with cookie flag', async () => {
     const argv = { cookie: 'This is the COOKIE content' }
-    expect(Utils.parseAutentication(argv)).toEqual({
+    expect(Utils.parseAuthentication(argv)).toEqual({
       Cookie: 'This is the COOKIE content'
     })
-    expect(Utils.hasAutentication(argv)).toEqual(true)
+    expect(Utils.hasAuthentication(argv)).toEqual(true)
   })
 
-  test('hasAutentication & parseAutentication with token flag', async () => {
+  test('hasAuthentication & parseAuthentication with token flag', async () => {
     const argv = { token: 'This is the TOKEN content' }
-    expect(Utils.parseAutentication(argv)).toEqual({
+    expect(Utils.parseAuthentication(argv)).toEqual({
       Authorization: 'Bearer This is the TOKEN content'
     })
-    expect(Utils.hasAutentication(argv)).toEqual(true)
+    expect(Utils.hasAuthentication(argv)).toEqual(true)
   })
 
-  test('hasAutentication & parseAutentication with token and cookie flags', async () => {
+  test('hasAuthentication & parseAuthentication with token and cookie flags', async () => {
     const argv = {
       cookie: 'This is the COOKIE content',
       token: 'This is the TOKEN content'
     }
-    expect(Utils.parseAutentication(argv)).toEqual({
+    expect(Utils.parseAuthentication(argv)).toEqual({
       Cookie: 'This is the COOKIE content',
       Authorization: 'Bearer This is the TOKEN content'
     })
-    expect(Utils.hasAutentication(argv)).toEqual(true)
+    expect(Utils.hasAuthentication(argv)).toEqual(true)
   })
 })

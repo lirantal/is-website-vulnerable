@@ -43,7 +43,7 @@ module.exports = {
   hasDevice: function(argv) {
     return argv.mobile || argv.desktop || argv.none || false
   },
-  parseAutentication: function(argv) {
+  parseAuthentication: function(argv) {
     const extraHeaders = {}
     if (argv.cookie) {
       extraHeaders.Cookie = argv.cookie
@@ -55,7 +55,7 @@ module.exports = {
 
     return extraHeaders
   },
-  hasAutentication: function(argv) {
+  hasAuthentication: function(argv) {
     return ['cookie', 'token'].some(prop => Object.hasOwnProperty.call(argv, prop))
   }
 }
