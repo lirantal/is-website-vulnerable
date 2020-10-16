@@ -49,6 +49,16 @@ Woops! You forgot to provide a URL of a website to scan.
 ...
 ```
 
+### Exit codes
+
+If the CLI detects an error, it will terminate with an exit code different from 0.
+
+Exit Code 0: Everything is fine. No vulnerabilities found.
+
+Exit Code 1: An error happened during the execution. Check the logs for details.
+
+Exit Code 2: Vulnerabilities were found. Check the logs for details.
+
 ## Docker
 
 To build and run the container locally:
