@@ -26,4 +26,6 @@ RUN npm install --only=prod -g is-website-vulnerable
 # Chromium is needed for the scan
 RUN apk add --no-cache chromium
 
-CMD ["sh", "-c", "npx is-website-vulnerable $SCAN_URL"]
+COPY "./start.sh" "/"
+RUN chmod +x "/start.sh"
+ENTRYPOINT [ "/start.sh" ]
