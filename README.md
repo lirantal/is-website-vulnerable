@@ -79,6 +79,12 @@ docker run --rm -e SCAN_URL="https://www.google.com/" lirantal/is-website-vulner
 
 `SCAN_URL` is an environment variable and its value must be replaced with the desired URL during Docker run. Docker container will exit once the scan has been completed.
 
+If you wish to provide command line arguments to `is-website-vulnerable` and customize the run, such as providing `--json` or other supported arguments, you should omit the environment variable and provide the full command. Here is an example:
+
+```
+docker run --rm lirantal/is-website-vulnerable:latest https://www.google.com --json
+```
+
 :warning: A modern version of Chrome is assumed to be available when using `is-website-vulnerable`. It may not be safe to assume that this is satisfied automatically on some CI services. For example, [additional configuration](https://docs.travis-ci.com/user/chrome#selecting-a-chrome-version) is necessary for [Travis CI](https://travis-ci.com/).
 
 # GitHub Action
