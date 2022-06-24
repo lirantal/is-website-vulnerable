@@ -46,7 +46,7 @@
     "debug": "4.1.1",
     "enquirer": "^2.3.4",
     "is-url-superb": "^3.0.0",
-    "lighthouse": "6.0.0",
+    "lighthouse": "9.3.0",
     "ora": "4.0.3",
     "yargs": "16.0.0"
   },
