@@ -1,4 +1,5 @@
 'use strict'
+const process = require('process')
 const debug = require('debug')('is-website-vulnerable')
 const { prompt } = require('enquirer')
 const isUrl = require('is-url-superb')
@@ -23,6 +24,9 @@ async function promptUrlInput(url, isJson) {
   }
 
   console.error('Woops! You forgot to provide a URL of a website to scan.')
+  if (process.env.CI) {
+    process.exit(1)
+  }
 
   try {
     const response = await prompt({
