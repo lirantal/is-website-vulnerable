@@ -177,7 +177,7 @@
     }
   },
   "release": {
-    "branch": "master",
+    "branch": "main",
     "analyzeCommits": {
       "preset": "angular",
       "releaseRules": [

@@ -99,7 +99,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test for public javascript library vulnerabilities 
-        uses: lirantal/is-website-vulnerable@master
+        uses: lirantal/is-website-vulnerable@main
         with:
           scan-url: "https://yoursite.com"
 ```
