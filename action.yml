@@ -1,11 +1,11 @@
-name: 'Is Website vulnerable'
-description: 'Scans a url for public JavaScript library vulnerabilities'
+name: 'Is Website Vulnerable'
+description: 'Scans a URL for publicly known JavaScript library vulnerabilities'
 branding:
   icon: 'alert-circle'  
   color: 'purple'
 inputs:
   scan-url:
-    description: 'Website url to scan'
+    description: 'Website URL to scan'
     required: true
 runs:
   using: 'docker'
