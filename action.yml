@@ -1,5 +1,5 @@
 name: 'Is Website vulnerable'
-description: 'Scans a url for public javascript library vulnerabilities'
+description: 'Scans a url for public JavaScript library vulnerabilities'
 branding:
   icon: 'alert-circle'  
   color: 'purple'
