@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest]
-        node: ['12', '10']
+        node: ['10', '12', '14', '16', '18']
     name: Node ${{ matrix.node }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: '10'
+          node-version: '18'
       - name: install dependencies
         run: npm install --ignore-engines
       - name: prune devDeps from shrinkwrap file
