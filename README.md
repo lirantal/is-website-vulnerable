@@ -112,6 +112,25 @@ You can install globally via:
 npm install -g is-website-vulnerable
 ```
 
+# Learn Node.js Security
+
+<hr/>
+
+<div align="center">
+  <p>
+    <a href="https://nodejs-security.com">
+      <img alt="Node.js Security" align="center" src="https://img.shields.io/badge/%F0%9F%A6%84-Learn%20Node.js%20Security%E2%86%92-gray.svg?colorA=5734F5&colorB=5734F5&style=flat" />
+    </a>
+  </p>
+  
+  ![Screenshot 2024-09-12 at 20 14 27](https://github.com/user-attachments/assets/586f3151-eed9-4542-92f1-de9237f6783c)
+  
+  <p>
+    Learn Node.js Secure Coding techniques and best practices from <a href="https://www.lirantal.com">Liran Tal</a>
+  </p>
+</div>
+
+
 # Contributing
 
 Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing to this project.
