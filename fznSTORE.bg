@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fznSTORE.bg</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #333;
+        }
+        .shoe-card {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .shoe-card h3 {
+            margin-top: 0;
+        }
+        .shoe-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .shoe-card ul li {
+            margin: 5px 0;
+        }
+        .price {
+            font-size: 18px;
+            color: #e60000;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to fznSTORE.bg </h1>
+        <p>Explore our popular models for performance and style</p>
+    </header>
+
+    <div class="container">
+        <section class="shoe-card">
+            <h2>Nike Air Max TN</h2>
+            <h3>Style & Design</h3>
+            <p>The Nike Air Max TN is a classic in the Air Max line, known for its iconic "Tuned Air" cushioning technology. It features a distinctive design with a sleek upper and a visible Air cushioning unit that delivers responsive comfort. The shoe is built with durability and support in mind, making it ideal for both athletic and casual wear.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Tuned Air cushioning: Enhanced support and comfort, especially around the arch and heel.</li>
+                <li>Breathable mesh upper: Keeps your feet cool and comfortable.</li>
+                <li>Sleek, stylish design: Perfect for streetwear and running.</li>
+                <li>Rubber outsole: Provides traction and grip.</li>
+            </ul>
+
+            <p class="price">Price: 240 BGN</p>
+        </section>
+
+        <section class="shoe-card">
+            <h2>Nike Vapormax</h2>
+            <h3>Style & Design</h3>
+            <p>The Nike Vapormax is a futuristic running shoe that features a full-length Air sole, making it one of the most comfortable and innovative shoes Nike has designed. The shoe’s lightweight design and flexibility offer a sock-like fit, making it perfect for runners and anyone seeking a unique, breathable shoe.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>Full-length Air cushioning: Delivers a lightweight feel with exceptional responsiveness.</li>
+                <li>Seamless knit upper: Provides a flexible, sock-like fit that molds to the foot.</li>
+                <li>Lightweight and breathable: Ideal for all-day wear or running.</li>
+                <li>Versatile design: Combines performance with style, great for both sports and casual wear.</li>
+            </ul>
+
+            <p class="price">Price: 220 BGN</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Nike Shoes - All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
