@@ -98,7 +98,12 @@ module.exports = class Audit {
         )}`
       )
 
-    await chromeInstance.kill()
+    try {
+      await chromeInstance.kill()
+    } catch (error) {
+      // Chrome process may have already exited, which is the desired outcome
+      debug(`Chrome kill warning: ${error.message}`)
+    }
     return scanResult
   }
 }
