@@ -1,4 +1,4 @@
-name: 'Is Website Vulnerable'
+name: 'Is Website Vulnerable' 
 description: 'Scans a URL for publicly known JavaScript library vulnerabilities'
 branding:
   icon: 'alert-circle'  
