@@ -20,8 +20,7 @@
     "format": "prettier --config .prettierrc.js --write '**/*.js'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "coverage:view": "open-cli coverage/lcov-report/index.html",
-    "semantic-release": "semantic-release"
+    "coverage:view": "open-cli coverage/lcov-report/index.html"
   },
   "author": {
     "name": "Liran Tal",
@@ -57,8 +56,6 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@semantic-release/changelog": "^5.0.0",
-    "@semantic-release/git": "^9.0.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
@@ -77,8 +74,7 @@
     "lint-staged": "^10.0.7",
     "lockfile-lint": "^3.0.9",
     "open-cli": "^5.0.0",
-    "prettier": "^1.19.1",
-    "semantic-release": "^17.0.1"
+    "prettier": "^1.19.1"
   },
   "jest": {
     "testEnvironment": "node",
