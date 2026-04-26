@@ -31,18 +31,23 @@ jobs:
   release:
     name: do semantic release
     runs-on: 'ubuntu-latest'
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     needs: build
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '24'
       - name: install dependencies
-        run: npm install --ignore-engines
+        run: npm ci --ignore-engines
       - name: prune devDeps from shrinkwrap file
         run: npx lockfile-prune npm-shrinkwrap.json
       - name: release
-        run: npm run semantic-release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
