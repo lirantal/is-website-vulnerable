@@ -6,6 +6,10 @@
   "bin": {
     "is-website-vulnerable": "./bin/is-website-vulnerable.js"
   },
+  "publishConfig": {
+    "provenance": true,
+    "access": "public"
+  },
   "engines": {
     "node": ">=10.0.0"
   },
