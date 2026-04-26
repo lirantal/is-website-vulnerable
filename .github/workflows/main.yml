@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: '24'
       - name: install dependencies
-        run: npm ci --ignore-engines
+        run: npm ci
       - name: prune devDeps from shrinkwrap file
         run: npx lockfile-prune npm-shrinkwrap.json
       - name: release
