@@ -1,0 +1,26 @@
+name: Repository init
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repo-init.yml'  # only fires when this file itself changes
+  schedule:
+    - cron: '0 9 * * 1'   # Every Monday at 09:00 UTC
+
+jobs:
+  create-label:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create automerge label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "automerge" \
+            --repo "${{ github.repository }}" \
+            --color "0075ca" \
+            --description "Merge this PR automatically once checks pass" \
+            --force
