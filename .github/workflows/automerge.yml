@@ -31,6 +31,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           # we only merge PRs with labels of "dependencies" 
           MERGE_LABELS: "automerge"
+          MERGE_READY_STATE: "clean,has_hooks,unknown"
           MERGE_REMOVE_LABELS: "automerge"
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "automatic"

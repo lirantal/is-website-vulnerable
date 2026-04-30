@@ -24,3 +24,12 @@ jobs:
             --color "0075ca" \
             --description "Merge this PR automatically once checks pass" \
             --force
+      - name: Create dependencies label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create "dependencies" \
+            --repo "${{ github.repository }}" \
+            --color "0366d6" \
+            --description "Pull requests that update a dependency" \
+            --force
