@@ -45,9 +45,9 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: prune devDeps from shrinkwrap file
-        run: npx lockfile-prune npm-shrinkwrap.json
+        run: npx --no-install lockfile-prune npm-shrinkwrap.json
       - name: release
-        run: npx semantic-release
+        run: npx --no-install semantic-release
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
