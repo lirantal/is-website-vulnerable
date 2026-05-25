@@ -56,6 +56,12 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/npm": "^13.1.5",
+    "@semantic-release/release-notes-generator": "^14.1.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
@@ -74,7 +80,8 @@
     "lint-staged": "^10.0.7",
     "lockfile-lint": "^3.0.9",
     "open-cli": "^5.0.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "semantic-release": "^25.0.3"
   },
   "jest": {
     "testEnvironment": "node",
@@ -177,7 +184,9 @@
     }
   },
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "analyzeCommits": {
       "preset": "angular",
       "releaseRules": [
