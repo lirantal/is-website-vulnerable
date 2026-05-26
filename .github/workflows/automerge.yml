@@ -1,4 +1,5 @@
 name: automerge
+
 on:
   pull_request:
     types:
@@ -9,32 +10,28 @@ on:
       - edited
       - ready_for_review
       - reopened
-      - unlocked
-  pull_request_review:
-    types:
-      - submitted
-  check_suite:
+  check_run:
     types:
       - completed
   status: {}
+
 jobs:
   automerge:
+    name: Automerge
     runs-on: ubuntu-latest
+    if: github.event_name != 'check_run' || github.event.check_run.name != 'Automerge'
     permissions:
       contents: write
       pull-requests: write
+      checks: read
+      statuses: read
     steps:
-      - id: automerge
-        name: automerge
-        uses: "pascalgn/automerge-action@7961b8b5eec56cc088c140b56d864285eabd3f67" # v0.16.4
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          # we only merge PRs with labels of "dependencies" 
-          MERGE_LABELS: "automerge"
-          MERGE_READY_STATE: "clean,has_hooks,unknown"
-          MERGE_REMOVE_LABELS: "automerge"
-          MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "automatic"
-          MERGE_FORKS: "false"
-          MERGE_REQUIRED_APPROVALS: "0"
-          UPDATE_METHOD: "rebase"
+      - name: Merge eligible pull requests
+        uses: lirantal/github-action-automerge@8ea9b60ae1fe716a5128fefa26f3df1ba8417742 # 1.0.1
+        with:
+          label: automerge
+          merge-method: squash
+          green-observations-required: "4"
+          poll-interval-seconds: "60"
+          timeout-seconds: "3600"
+          ignored-check-names: Automerge
