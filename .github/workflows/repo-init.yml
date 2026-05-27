@@ -9,6 +9,8 @@ on:
   schedule:
     - cron: '0 9 * * 1'   # Every Monday at 09:00 UTC
 
+permissions: {}   # deny-all at workflow level; each job declares only what it needs
+
 jobs:
   create-label:
     runs-on: ubuntu-latest
