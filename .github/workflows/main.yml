@@ -2,8 +2,12 @@ name: CI
 
 on: [push, pull_request]
 
+permissions: {}
+
 jobs:
   build:
+    permissions:
+      contents: read
     strategy:
       matrix:
         platform: [ubuntu-latest]
