@@ -137,3 +137,7 @@ Please consult [CONTRIBUTING](./CONTRIBUTING.md) for guidelines on contributing 
 # Author
 
 **is-website-vulnerable** © [Liran Tal](https://github.com/lirantal), Released under the [Apache-2.0](./LICENSE) License.
+
+## Documentation
+
+- [Project documentation](./docs/README.md) - development, testing, architecture, and conventions.
