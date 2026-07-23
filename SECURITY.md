@@ -1,23 +1,27 @@
 # Security Policy
 
+**Please do not report security vulnerabilities through public GitHub issues**.
+
 ## Responsible disclosure security policy
 
-A responsible disclosure policy helps protect users of the project from publicly disclosed security vulnerabilities without a fix by employing a process where vulnerabilities are first triaged in a private manner, and only publicly disclosed after a reasonable time period that allows patching the vulnerability and provides an upgrade path for users.
+A responsible disclosure policy helps protect users of the project from public
+disclosure of security vulnerabilities without a fix available. We achieve
+that by following the process where vulnerabilities are first triaged in a
+private manner, and are only publicly disclosed after a reasonable time period
+of the patch being available for users.
 
-When contacting us directly via email, we will do our best efforts to respond in a reasonable time to resolve the issue. When contacting a security program their disclosure policy will provide details on time-frame, processes and paid bounties.
-
-We kindly ask you to refrain from malicious acts that put our users, the project, or any of the project’s team members at risk.
+We kindly ask you to refrain from malicious acts that put our users, the
+project, or any of the project’s team members at risk.
 
 ## Reporting a security issue
 
-We consider the security of our systems a top priority. But no matter how much effort we put into system security, there can still be vulnerabilities present.
+We consider the security of the project a top priority.
 
-If you discover a security vulnerability, please use one of the following means of communications to report it to us:
+If you discover a security vulnerability, please use one of the following
+means of communications to report it to us:
 
-- Report the security issue to the Node.js Security WG through the [HackerOne program](https://hackerone.com/nodejs-ecosystem) for ecosystem modules on npm, or to [Snyk Security Team](https://snyk.io/vulnerability-disclosure). They will help triage the security issue and work with all involved parties to remediate and release a fix.
+- If enabled, report the security issue via GitHub's private vulnerability reporting
+- As a secondary method, you may contact the maintainer via email
 
-Note that time-frame and processes are subject to each program’s own policy.
-
-- Report the security issue to the project maintainers directly.
-
-Your efforts to responsibly disclose your findings are sincerely appreciated and will be taken into account to acknowledge your contributions.
+We sincerely appreciate your efforts to responsibly disclose your findings
+with us.
