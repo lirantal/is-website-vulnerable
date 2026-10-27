@@ -29,7 +29,7 @@ jobs:
       statuses: read
     steps:
       - name: Merge eligible pull requests
-        uses: lirantal/github-action-automerge@8ea9b60ae1fe716a5128fefa26f3df1ba8417742 # 1.0.1
+        uses: lirantal/github-action-automerge@e2d68a8230f993393412ac28362eb4e6108ca93c # 1.0.2
         with:
           label: automerge
           merge-method: squash
